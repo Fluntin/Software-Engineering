@@ -1,4 +1,6 @@
-package Laboration_1_A_small_button_component.src.Basic_Problem;
+// Button.java
+
+package Laboration_1.src.Basic_Problem;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,25 +23,16 @@ public class Button extends JButton implements ActionListener {
         this.setText(s1);
         this.setForeground(Color.white);
         this.addActionListener(this);
-
     }
 
     private void toggleState() {
-        if (this.getBackground() == c1) {
-            this.setBackground(c2);
-            this.setText(s2);
-        } else {
-            this.setBackground(c1);
-            this.setText(s1);     }
-
-        Color toggleColor = super.getBackground() == this.c1 ? this.c2 : this.c1;
-        String toggleText = super.getText() == this.s1 ? this.s2 : this.s1;
+        Color toggleColor = this.getBackground().equals(c1) ? c2 : c1;
+        String toggleText = this.getText().equals(s1) ? s2 : s1;
         this.setBackground(toggleColor);
         this.setText(toggleText);
     }
 
     public void actionPerformed(ActionEvent a) {
-            this.toggleState();
+        this.toggleState();
     }
-
 }

@@ -1,4 +1,4 @@
-package Laboration_1_A_small_button_component.src.Basic_Problem;
+package Laboration_1.src.Basic_Problem;
 
 import java.awt.*;
 
@@ -7,5 +7,4 @@ public class Main {
         Frame frame = new Frame();
         frame.addButton(new Button(Color.lightGray, Color.darkGray, "On", "Off"));
     }
-
-    }
+}
