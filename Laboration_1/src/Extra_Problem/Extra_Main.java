@@ -11,17 +11,17 @@ public class Extra_Main {
         } catch (NumberFormatException e) {
             System.out.println("Incorrect input: Integer required. Try again");
             System.exit(0);
-            return; // Return to exit the program.
+            return;
         } catch (IndexOutOfBoundsException e) {
             System.out.println("No buttons added");
             System.exit(0);
-            return; // Return to exit the program.
+            return;
         }
 
         if ((args.length - 1) != n * 2) {
             System.out.println("Incorrect input: Incorrect number of strings");
             System.exit(0);
-            return; // Return to exit the program.
+            return;
         }
 
         SwingUtilities.invokeLater(() -> {
@@ -29,27 +29,21 @@ public class Extra_Main {
             for (int i = 1; i < n * 2 + 1; i += 2) {
                 Color color1 = getColorFromString(args[i]);
                 Color color2 = getColorFromString(args[i + 1]);
-                // You can modify the text as needed or use command-line arguments for it.
-                MybuttonB button = new MybuttonB(color1, color2, "State 1", "State 2");
+                Extra_Button button = new Extra_Button(color1, color2, "State 1", "State 2");
                 frame.addButton(button);
             }
-            
             frame.setVisible(true);
         });
     }
 
     private static Color getColorFromString(String colorString) {
         try {
-            Color color = Color.decode(colorString);
-            System.out.println("Decoded color: " + color);
-            return color;
+            return Color.decode(colorString);
         } catch (NumberFormatException e) {
             System.out.println("Invalid color code: " + colorString);
-            // Default to black if the color code is invalid
             return Color.BLACK;
         }
     }
-    
 }
 
 

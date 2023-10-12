@@ -20,21 +20,13 @@ public class Extra_Button extends JButton {
         setBackground(COLOR1);
         setText(TEXT1);
 
-        // Ensure the button is opaque and disable the default button UI
         setOpaque(true);
         setContentAreaFilled(true);
         setBorderPainted(false);
-
-        // Add the ButtonListener to the button
         addActionListener(new ButtonListener());
     }
 
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(100, 50);  // Return the desired size for the button
-    }
-
-    public void toggleState1() {
+    public void toggleState() {
         if (stateis1) {
             setBackground(COLOR2);
             setText(TEXT2);
@@ -49,8 +41,13 @@ public class Extra_Button extends JButton {
     class ButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            toggleState1();
+            toggleState();
         }
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(100, 50);
     }
 }
 
