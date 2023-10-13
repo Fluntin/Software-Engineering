@@ -1,22 +1,18 @@
-# Software-Engineering
+## Getting Started
 
-## Object-Oriented Programming in Java
+Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
 
-This repository focuses on Object-Oriented Programming using Java. Explore the depths of Java with examples, tutorials, and laboratory sessions that all come with documented UML class diagrams.
+## Folder Structure
 
-## Topics Covered
+The workspace contains two folders by default, where:
 
-- **Java Class Libraries**: Delve into the world of object collections, from simple to advanced graphical components. Explore client-server programming and threading.
-  
-- **UML Class Diagrams**: Visual representations to make understanding Java classes and their relationships easier.
+- `src`: the folder to maintain sources
+- `lib`: the folder to maintain dependencies
 
-- **Design Patterns**: Understand and implement design patterns for robust object-oriented software development.
+Meanwhile, the compiled output files will be generated in the `bin` folder by default.
 
-- **Criteria for Good Design**: Dive into what makes software design effective and efficient.
+> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
 
-- **Testing**: Learn about test-driven software development and the importance of rigorous testing in the software lifecycle.
+## Dependency Management
 
-- **Object-Oriented Analysis**: Get oriented with the methodologies and approaches to object-oriented analysis.
-
-- **Development Methodologies**: Get familiar with common development practices and methodologies in the software industry.
-
+The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
