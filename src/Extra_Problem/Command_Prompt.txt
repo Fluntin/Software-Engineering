@@ -1,4 +1,0 @@
-C:\Users\villi\Documents\Villim\University Courses\KTH_Courses\DD1385 Software Engineering\Repo\Software-Engineering\src
-java Extra_Problem.ButtonFrame 12 "Shimon - Sit" "Shimon - Stand" "Andreu - Sit" "Andreu - Stand" "Yaakov - Sit" "Yaakov - Stand" "Yochanan - Sit" "Yochanan - Stand" "Filipos - Sit" "Filipos - Stand" "Bartholomeus - Sit" "Bartholomeus - Stand" "Matityahu - Sit" "Matityahu - Stand" "Toma - Sit" "Toma - Stand" "Yaakov Hakatan - Sit" "Yaakov Hakatan - Stand" "Yehuda - Sit" "Yehuda - Stand" "Shimon Hakanai - Sit" "Shimon Hakanai - Stand" "Yehuda Ish Kariot - Sit" "Yehuda Ish Kariot - Stand"
-
-javac Button.java Frame.java Main.java 
