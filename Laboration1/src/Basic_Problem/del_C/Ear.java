@@ -12,10 +12,10 @@ public class Ear implements ActionListener {
     public Ear(MyButton button) {
         this.button = button;
     }
-
+    // Its a good practice to get this button from the event source
     @Override
     public void actionPerformed(ActionEvent e) {
-        button.toggleState();
+        this.button.toggleState();
     }
 }
 

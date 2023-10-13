@@ -42,7 +42,7 @@ public class MyButton extends JButton implements ActionListener {
             state = 0;
         }
     }
-
+    //The first setting is not required, but it is good practice to set the source of the event to the button itself.
     @Override // Override the actionPerformed method from the ActionListener interface
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this) {
