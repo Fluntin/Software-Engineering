@@ -14,7 +14,7 @@ class ViewControl extends JFrame {
 
   public static void main(String[] args) {
     Boardgame game = new NewMockGame();
-    new ViewControl(game, 4);
+    new ViewControl(game, 8);
   }
 
   ViewControl(Boardgame gameInstance, int boardSize) {

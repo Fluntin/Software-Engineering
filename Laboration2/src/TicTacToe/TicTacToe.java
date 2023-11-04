@@ -1,90 +1,87 @@
 package TicTacToe;
 
-class TicTacToe implements Boardgame {
+public class TicTacToe implements Boardgame {
+    private String currentMessage = "";
+    private String[][] gameBoard = new String[3][3];
+    private String playerX = "X";
+    private String playerO = "O";
+    private boolean isPlayerXTurn = true;
+    private int totalMoves = 0; // Once this reaches 9, start the "move phase".
 
-  private String currentMessage = "";
-  private String[][] board = new String[3][3];
-  private String player1 = "X";
-  private String player2 = "O";
-  private boolean player1Turn = true; // true = player1
-  private int numMoves = 0; // once this reaches 9, start "flyttfas".
+    // For the "move phase"
+    private boolean isSquareSelected = false;
+    private int selectedRow = 0;
+    private int selectedColumn = 0;
 
-  // För flyttfasen
-  private boolean selected = false;
-  private int iCoord = 0;
-  private int jCoord = 0;
-
-  public boolean move(int i, int j) {
-    if (numMoves < 9) {
-      return preFlyttFas(i, j);
+    @Override
+    public boolean move(int row, int column) {
+        if (totalMoves < 9) {
+            return preMovePhase(row, column);
+        }
+        return movePhase(row, column);
     }
-    return FlyttFas(i, j);
-  }
 
-  boolean preFlyttFas(int i, int j) {
-    if (board[i][j] != null) {
-      currentMessage = "Failed to perform move, something's there!";
-      return false;
+    private boolean preMovePhase(int row, int column) {
+        if (gameBoard[row][column] != null) {
+            currentMessage = "Failed to perform move, something's already there!";
+            return false;
+        } else {
+            if (isPlayerXTurn) {
+                gameBoard[row][column] = playerX;
+                isPlayerXTurn = false;
+            } else {
+                gameBoard[row][column] = playerO;
+                isPlayerXTurn = true;
+            }
+            currentMessage = "Succeeded in making a move";
+        }
+        totalMoves++;
+        return true;
     }
-    else {
-      if (player1Turn) {
-        board[i][j] = player1;
-        player1Turn = false;
-      } else {
-        board[i][j] = player2;
-        player1Turn = true;
-      }
-      currentMessage = "Succeeded in making move";
+
+    private boolean movePhase(int row, int column) {
+        if (isSquareSelected) {
+            if (!isPlayerXTurn && gameBoard[row][column] == playerX) {
+                // If it's Player O's turn, they have already selected
+                // a square and have now chosen a square containing an 'X':
+                gameBoard[row][column] = playerO;
+                gameBoard[selectedRow][selectedColumn] = playerX;
+                isPlayerXTurn = true;
+            } else if (isPlayerXTurn && gameBoard[row][column] == playerO) {
+                gameBoard[row][column] = playerX;
+                gameBoard[selectedRow][selectedColumn] = playerO;
+                isPlayerXTurn = false;
+            } else {
+                currentMessage = "Wrong kind of choice";
+                return false;
+            }
+            currentMessage = "Dropped";
+            isSquareSelected = false;
+        } else {
+            if ((!isPlayerXTurn && gameBoard[row][column] == playerO) ||
+                    (isPlayerXTurn && gameBoard[row][column] == playerX)) {
+                // If it's Player O's turn and Player O has correctly
+                // chosen a square containing an 'O':
+                isSquareSelected = true;
+                selectedRow = row;
+                selectedColumn = column;
+            } else {
+                currentMessage = "Wrong kind of choice";
+                return false;
+            }
+            currentMessage = "Chosen";
+        }
+        return true;
     }
-    numMoves++;
-    return true;
-  }
 
-  boolean FlyttFas(int i, int j) {
-    if (selected) {
-      if (!player1Turn && board[i][j] == player1) {
-        /* If it's player 2's turn, they have already selected
-        a square and have now chosen a square containing an 'X': */
-        board[i][j] = player2;
-        board[iCoord][jCoord] = player1;
-        player1Turn = true;
-      }
-      else if (player1Turn && board[i][j] == player2) {
-        board[i][j] = player1;
-        board[iCoord][jCoord] = player2;
-        player1Turn = false;
-      }
-      else {
-        currentMessage = "Wrong kind of choice";
-        return false;
-      }
-      currentMessage = "Dropped";
-      selected = false;
+    @Override
+    public String getStatus(int row, int column) {
+        return gameBoard[row][column];
     }
-    else {
-      if ((!player1Turn && board[i][j] == player2) ||
-        (player1Turn && board[i][j] == player1)) {
-        /* If it's player 2's turn and player 2 has correctly
-        chosen a square containing an 'O': */
-        selected = true;
-        iCoord = i;
-        jCoord = j;
-      }
-        else {
-        currentMessage = "Wrong kind of choice";
-        return false;
-      }
-      currentMessage = "Chosen";
+
+    @Override
+    public String getMessage() {
+        return currentMessage;
     }
-    return true;
-  }
-
-  public String getStatus(int i, int j) {
-    return board[i][j];
-  }
-
-  public String getMessage() {
-    return currentMessage;
-  }
-
 }
+

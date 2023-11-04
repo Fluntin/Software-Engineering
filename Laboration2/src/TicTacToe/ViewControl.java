@@ -13,7 +13,7 @@ class ViewControl extends JFrame {
 
   public static void main(String[] args) {
     Boardgame game = new TicTacToe();
-    new ViewControl(game, 4);
+    new ViewControl(game, 3);
   }
 
   ViewControl(Boardgame gameInstance, int boardSize) {
