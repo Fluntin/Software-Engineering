@@ -1,3 +1,5 @@
+package MockGame;
+
 import java.awt.event.*;
 import javax.swing.*;
 
@@ -11,7 +13,7 @@ class ViewControl extends JFrame {
   JPanel gamePanel = new JPanel();
 
   public static void main(String[] args) {
-    Boardgame game = new FifteenModel();
+    Boardgame game = new NewMockGame();
     new ViewControl(game, 4);
   }
 

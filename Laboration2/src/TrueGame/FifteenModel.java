@@ -1,3 +1,4 @@
+package TrueGame;
 import java.util.Random;
 
 class FifteenModel implements Boardgame {
