@@ -1,4 +1,4 @@
-package TrueGame;
+package Femtonspel;
 import java.util.Random;
 
 class FifteenModel implements Boardgame {

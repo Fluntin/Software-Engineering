@@ -1,4 +1,4 @@
-package TrueGame;
+package Femtonspel;
 import java.util.*;
 class  Text15 {
     public static void main(String[] u) {
