@@ -6,7 +6,7 @@ public class TicTacToe implements Boardgame {
     private String playerX = "X";
     private String playerO = "O";
     private boolean isPlayerXTurn = true;
-    private int totalMoves = 0; // Once this reaches 9, start the "move phase".
+    private int totalMoves = 0; // Once this reaches 9, we start the "move phase".
 
     // For the "move phase"
     private boolean isSquareSelected = false;
