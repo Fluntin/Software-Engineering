@@ -35,7 +35,7 @@ class FifteenModel implements Boardgame {
     private void shuffleBoard() {
         Random rand = new Random();
         for (int i = 0; i < 100; i++) {
-            int rowChange = rand.nextInt(2) == 0 ? -1 : 1;
+            int rowChange = rand.nextInt(2) == 0 ? -1 : 1; // ? means if, : means else
             int colChange = rand.nextInt(2) == 0 ? -1 : 1;
             int whichToMove = rand.nextInt(2);
 
