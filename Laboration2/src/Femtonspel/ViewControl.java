@@ -18,7 +18,7 @@ class ViewControl extends JFrame {
     // First we create a new instance of the game.
     // Create an instance of the FifteenModel class to represent the game logic.
     //Boardgame game = new FifteenModel();
-    Boardgame game = new NewMockGame();
+    Boardgame game = new FifteenModel();
     // Then we create a new instance of the ViewControl class.
     // We need to åass the game logic and the size of the game board.
     new ViewControl(game, 4);
