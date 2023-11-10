@@ -32,3 +32,4 @@ Tic-Tac-Toe is a classic two-player game where players take turns marking X or O
 - `ViewControl` Class: Manages the GUI and user interactions for the Tic-Tac-Toe game.
 
 ---
+![TicTacToe_Diagram](TicTacToe_Diagram.jpg)

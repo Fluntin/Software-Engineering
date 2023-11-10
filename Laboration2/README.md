@@ -1,7 +1,3 @@
-Certainly! Here's a general README that provides an overview of the project before diving into specific folders:
-
----
-
 # Java Game Collection
 
 Welcome to the Java Game Collection project! This repository contains a collection of simple Java games with graphical user interfaces (GUI) implemented using Swing. Each game is organized into its respective folder, and this general README will provide an overview of the project's goals and structure.
@@ -22,7 +18,9 @@ The "Fifteen Game" folder contains a simple implementation of the Fifteen Puzzle
 - **Game Class:** `FifteenModel`
 - **GUI Class:** `ViewControl`
 
-![MockGame_Diagram](MockGame_Diagram.jpg)
+![FifteenModel_Diagram](FifteenModel_Diagram.jpg)
+
+---
 
 ### Mock Game
 
@@ -34,6 +32,8 @@ The "Mock Game" folder contains a mock game implementation with a graphical user
 
 ![MockGame_Diagram](MockGame_Diagram.jpg)
 
+---
+
 ### Tic-Tac-Toe Game
 
 The "Tic-Tac-Toe Game" folder contains a simple implementation of the classic Tic-Tac-Toe (X and O) game. Two players take turns marking squares on a 3x3 grid to form a line of their symbols.
@@ -41,6 +41,8 @@ The "Tic-Tac-Toe Game" folder contains a simple implementation of the classic Ti
 - **Folder:** `TicTacToe`
 - **Game Class:** `TicTacToe`
 - **GUI Class:** `ViewControl`
+
+![TicTacToe_Diagram](TicTacToe_Diagram.jpg)
 
 ## Usage
 

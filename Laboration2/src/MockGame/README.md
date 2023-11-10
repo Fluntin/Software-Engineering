@@ -31,3 +31,5 @@ The Mock Game Application serves as an example of a simple board game interface 
 - `ViewControl` Class: Manages the GUI and user interactions for the mock game.
 
 ---
+
+![MockGame_Diagram](MockGame_Diagram.jpg)
