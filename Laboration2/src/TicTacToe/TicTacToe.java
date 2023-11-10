@@ -49,48 +49,41 @@ public class TicTacToe implements Boardgame {
     // if they select a square containing their opponent's symbol.
     private boolean movePhase(int row, int column) {
         if (isSquareSelected) {
-             // If a square is already selected, check if the player can perform a valid swap
-            if (!isPlayerXTurn && gameBoard[row][column] == playerX) {
-                // If it's Player O's turn, they have already selected
-                // a square and have now chosen a square containing an 'X'. Swap the symbols.
-                gameBoard[row][column] = playerO;
-                gameBoard[selectedRow][selectedColumn] = playerX;
-                isPlayerXTurn = true; // Toggle to the other player X's turn
-
-            } else if (isPlayerXTurn && gameBoard[row][column] == playerO) {
-                 // If it's Player X's turn, they have already selected a square
-                // and have now chosen a square containing an 'O'. Swap the symbols.
-                gameBoard[row][column] = playerX;
-                gameBoard[selectedRow][selectedColumn] = playerO;
-                isPlayerXTurn = false; // Toggle to Player O's turn
+            // Check if the selected square is empty and adjacent to the previously selected square
+            if (gameBoard[row][column] == null && isAdjacent(row, column, selectedRow, selectedColumn)) {
+                // Move the player's symbol to the new square
+                gameBoard[row][column] = isPlayerXTurn ? playerX : playerO;
+                gameBoard[selectedRow][selectedColumn] = null;
+    
+                // Toggle the turn
+                isPlayerXTurn = !isPlayerXTurn;
+                currentMessage = "Move successful";
+                isSquareSelected = false; // Reset the square selection flag.
             } else {
-                // If the player's choice is invalid (e.g., not a valid swap),
-                // set an error message and return false.
-                currentMessage = "Wrong kind of choice";
+                currentMessage = "Invalid move";
                 return false;
             }
-            currentMessage = "Dropped"; // Set a message indicating that the swap was successful.
-            isSquareSelected = false; // Reset the square selection flag.
         } else {
-            // If no square is selected, check if the player selects a square containing
-            // their opponent's symbol. If so, set the square as selected for a potential swap.
-            if ((!isPlayerXTurn && gameBoard[row][column] == playerO) ||
-                    (isPlayerXTurn && gameBoard[row][column] == playerX)) {
-                // If it's Player O's turn and Player O has correctly
-                // chosen a square containing an 'O':
+            // Select a square only if it contains the player's symbol
+            if ((isPlayerXTurn && gameBoard[row][column] == playerX) ||
+                (!isPlayerXTurn && gameBoard[row][column] == playerO)) {
                 isSquareSelected = true;
                 selectedRow = row;
                 selectedColumn = column;
+                currentMessage = "Square selected";
             } else {
-                 // If the player's choice is invalid (e.g., not a valid selection),
-                // set an error message and return false.
-                currentMessage = "Wrong kind of choice";
+                currentMessage = "Invalid selection";
                 return false;
             }
-            currentMessage = "Chosen"; // Set a message indicating a successful selection.
         }
-        return true; // Return true to indicate that the move was successful.
+        return true;
     }
+    
+    // Helper method to check if two squares are adjacent
+    private boolean isAdjacent(int row1, int col1, int row2, int col2) {
+        return Math.abs(row1 - row2) <= 1 && Math.abs(col1 - col2) <= 1;
+    }
+    
 
     @Override
     public String getStatus(int row, int column) {
