@@ -22,6 +22,8 @@ The "Fifteen Game" folder contains a simple implementation of the Fifteen Puzzle
 - **Game Class:** `FifteenModel`
 - **GUI Class:** `ViewControl`
 
+![MockGame_Diagram](MockGame_Diagram.jpg)
+
 ### Mock Game
 
 The "Mock Game" folder contains a mock game implementation with a graphical user interface (GUI). The game demonstrates basic interactions and messaging between players.
@@ -30,7 +32,7 @@ The "Mock Game" folder contains a mock game implementation with a graphical user
 - **Game Class:** `NewMockGame`
 - **GUI Class:** `ViewControl`
 
-![Alt text for the image](Laboration2/MockGame_Diagram.jpg)
+![MockGame_Diagram](MockGame_Diagram.jpg)
 
 ### Tic-Tac-Toe Game
 
