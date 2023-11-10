@@ -30,7 +30,7 @@ The "Mock Game" folder contains a mock game implementation with a graphical user
 - **Game Class:** `NewMockGame`
 - **GUI Class:** `ViewControl`
 
-![Alt text for the image](Laboration2/MockGame_Diagram.jpg)
+![Alt text for the image]([Laboration2/MockGame_Diagram.jpg](https://github.com/Fluntin/Software-Engineering/blob/472d1b9784aa1c6ab2dac3632a3a21e1e2c76f68/Laboration2/MockGame_Diagram.jpg))
 
 ### Tic-Tac-Toe Game
 
