@@ -30,6 +30,8 @@ The "Mock Game" folder contains a mock game implementation with a graphical user
 - **Game Class:** `NewMockGame`
 - **GUI Class:** `ViewControl`
 
+![Alt text for the image](Laboration2/MockGame_Diagram.jpg)
+
 ### Tic-Tac-Toe Game
 
 The "Tic-Tac-Toe Game" folder contains a simple implementation of the classic Tic-Tac-Toe (X and O) game. Two players take turns marking squares on a 3x3 grid to form a line of their symbols.
