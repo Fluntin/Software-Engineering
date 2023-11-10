@@ -30,7 +30,7 @@ The "Mock Game" folder contains a mock game implementation with a graphical user
 - **Game Class:** `NewMockGame`
 - **GUI Class:** `ViewControl`
 
-![Alt text for the image](Laboration2/MockGame_Diagram.jpg)
+![Alt text for the image](MockGame_Diagram.jpg)
 
 ### Tic-Tac-Toe Game
 
