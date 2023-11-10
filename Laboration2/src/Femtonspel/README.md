@@ -30,7 +30,7 @@ The Fifteen Puzzle game is a classic sliding puzzle game where the objective is 
 - `FifteenModel` Class: Implements the game logic and board management.
 - `Square` Class: Represents graphical squares/buttons on the game board.
 - `ViewControl` Class: Manages the GUI and user interactions.
-- 
+
 ---
 
 ![FifteenModel_Diagram](FifteenModel_Diagram.jpg)
