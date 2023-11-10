@@ -22,7 +22,7 @@ The "Fifteen Game" folder contains a simple implementation of the Fifteen Puzzle
 - **Game Class:** `FifteenModel`
 - **GUI Class:** `ViewControl`
 
-![MockGame_Diagram](MockGame_Diagram.jpg)
+![FifteenModel_Diagram](FifteenModel_Diagram.jpg)
 
 ### Mock Game
 
@@ -41,6 +41,8 @@ The "Tic-Tac-Toe Game" folder contains a simple implementation of the classic Ti
 - **Folder:** `TicTacToe`
 - **Game Class:** `TicTacToe`
 - **GUI Class:** `ViewControl`
+
+![TicTacToe_Diagram](TicTacToe_Diagram.jpg)
 
 ## Usage
 
