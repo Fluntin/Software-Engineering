@@ -4,9 +4,11 @@ import java.awt.event.*;
 import javax.swing.*;
 class Gameboard extends JPanel {
 
-    private Icon[] icons = {new ImageIcon("rock.gif"), 
-		    new ImageIcon("paper.gif"),
-		    new ImageIcon("scissors.gif")};
+	// Strange that its not working with .gif, but .jpg works fine.
+	// This could be because of the version of Java that I am using...
+    private Icon[] icons = {new ImageIcon("rock.jpg"), 
+		    new ImageIcon("paper.jpg"),
+		    new ImageIcon("scissors.jpg")};
 
     private JButton[] buttons = new JButton[3];
     private JButton lastPlayed; // remembers last chosen button/gesture

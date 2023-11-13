@@ -20,17 +20,19 @@ public class Server4713 {
 } 
 
 class ClientHandler extends Thread {
+
     static int numberOfPls=0;
     BufferedReader in;
     PrintWriter out;
+
     public ClientHandler(Socket socket){
 	try {
 	    in = new BufferedReader(new InputStreamReader
 				    (socket.getInputStream()));
 	    out= new PrintWriter(socket.getOutputStream());
-	}
-	catch(IOException e) {System.err.println(e);
-	}
+		}
+		catch(IOException e) {System.err.println(e);
+		}
     }
     
     public void run() {
