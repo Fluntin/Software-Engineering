@@ -97,32 +97,15 @@ class RPSSkel extends JFrame implements ActionListener {
 	void setupGameBoard() {
 		// Create a JPanel to hold the game boards side by side
 		JPanel gamePanel = new JPanel(new GridLayout(1, 2));
-		gamePanel.setBackground(new Color(240, 240, 240)); // Light gray background
-	
-		// Create the "You" and "Computer" game boards
-		playerBoard = new Gameboard("You", this);
-		computerBoard = new Gameboard("Computer");
-	
-		// Customize the appearance of the "Close" button
-		closeButton = new JButton("Close");
-		closeButton.setBackground(new Color(92, 92, 255)); // Blue background color
-		closeButton.setForeground(Color.WHITE); // White text color
-		closeButton.setFont(new Font("Arial", Font.BOLD, 16)); // Font style
-		closeButton.setFocusPainted(false); // Remove focus border
-	
-		// Add the game boards and "Close" button to the main frame
 		gamePanel.add(playerBoard);
 		gamePanel.add(computerBoard);
-	
 		frame.add(gamePanel, BorderLayout.CENTER); // Add the game panel to the center
 		frame.add(closeButton, BorderLayout.SOUTH); // Add the "Close" button to the bottom
-	
-		// Configure the frame
-		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		frame.setSize(500, 750);
-		frame.setVisible(true);
+		frame.setSize(1000, 1500);
+		frame.setVisible(true);		
 	}
 	
+
 	
 	
 	// Constructor for the class.
