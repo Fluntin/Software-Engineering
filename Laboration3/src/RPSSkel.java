@@ -33,24 +33,20 @@ class RPSSkel extends JFrame implements ActionListener {
 	// There are 3 cases: draw, player wins or computer wins.
 	// We can group the cases by using if-else statements.
     void determineWinner() {
-
-		// Case1: If we have a draw.
         if (playerChoice.equals(computerChoice)) {
             updateGameUI("DRAW", "DRAW", true);
-        } 
-		// Case 2: If player wins.
-		else if (playerChoice.equals("ROCK") && computerChoice.equals("SCISSORS") ||
-                playerChoice.equals("PAPER") && computerChoice.equals("ROCK") ||
-                playerChoice.equals("SCISSORS") && computerChoice.equals("PAPER")) {
+        } else if ((playerChoice.equals("STEN") && computerChoice.equals("SAX")) ||
+                   (playerChoice.equals("PASE") && computerChoice.equals("STEN")) ||
+                   (playerChoice.equals("SAX") && computerChoice.equals("PASE"))) {
             updateGameUI("WINS", "LOSES", true);
-            playerBoard.wins();
-        } 
-		// Case3: If computer wins.
-		else {
+            playerBoard.wins(true, false); // Player wins, computer loses
+        } else {
             updateGameUI("LOSES", "WINS", true);
-            computerBoard.wins();
+            playerBoard.wins(false, true); // Player loses, computer wins
         }
     }
+    
+    
 
 	// When event occurs, this method is called.
 	// This method handles the game logic based on turnCounter -> keeps track of the game state.
@@ -101,7 +97,7 @@ class RPSSkel extends JFrame implements ActionListener {
 		gamePanel.add(computerBoard);
 		frame.add(gamePanel, BorderLayout.CENTER); // Add the game panel to the center
 		frame.add(closeButton, BorderLayout.SOUTH); // Add the "Close" button to the bottom
-		frame.setSize(1000, 1500);
+		frame.setSize(1000, 1250);
 		frame.setVisible(true);		
 	}
 	

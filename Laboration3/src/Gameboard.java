@@ -8,13 +8,13 @@ class Gameboard extends JPanel {
 	// This could be because of the version of Java that I am using...
 	private Icon[] icons = {
 		new ImageIcon(getClass().getResource("rock.jpg")),
-		new ImageIcon(getClass().getResource("paper.jpg")),
-		new ImageIcon(getClass().getResource("scissors.jpg"))
+		new ImageIcon(getClass().getResource("scissors.jpg")),
+		new ImageIcon(getClass().getResource("paper.jpg"))
 	};
 
     private JButton[] buttons = new JButton[3];
     private JButton lastPlayed; // remembers last chosen button/gesture
-    private String[] texts = {"STEN", "PASE", "SAX"};
+    private String[] texts = {"STEN", "SAX", "PASE"};
     private JLabel upperMess, lowerMess, scorelabel;
     private int score;
     private Color bgcolor;
@@ -22,8 +22,12 @@ class Gameboard extends JPanel {
 
 
     // Constructor that builds the board, used for computers board
+	private JLabel playerScoreLabel, computerScoreLabel;
+	private int playerScore = 0;
+	private int computerScore = 0;
+
     Gameboard(String name) {
-	setLayout(new GridLayout(5,1));
+		setLayout(new GridLayout(5,1));
 
 	// Upper JPanel holds players name and last gesture played
 	JPanel upper = new JPanel();
@@ -37,8 +41,12 @@ class Gameboard extends JPanel {
 	JPanel lower = new JPanel();
 	lower.setLayout(new GridLayout(2,1));
 	lowerMess = new JLabel("win/lose/draw", JLabel.CENTER);
-	scorelabel = new JLabel("Score: 0", JLabel.CENTER);
-	lower.add(lowerMess); lower.add(scorelabel);
+	playerScoreLabel = new JLabel("", JLabel.CENTER); // Player's score label
+    computerScoreLabel = new JLabel("", JLabel.CENTER); // Computer's score label
+    lower.add(lowerMess);
+    lower.add(playerScoreLabel);
+    lower.add(computerScoreLabel);
+    add(lower);
 
 	for (int i = 0; i<3; i++){
 	    buttons[i] = new JButton(icons[i]);
@@ -88,8 +96,17 @@ class Gameboard extends JPanel {
     }
 
     // add one point and display new score
-    void wins() {
-	score++;
-	scorelabel.setText("Score: " + score);
-    }
+    void wins(boolean playerWins, boolean computerWins) {
+		if (playerWins) {
+			playerScore++;
+		}
+		if (computerWins) {
+			computerScore++;
+		}
+		playerScoreLabel.setText("Player: " + playerScore); // Update player's score label
+		computerScoreLabel.setText("Computer: " + computerScore); // Update computer's score label
+	}
+
+	
+
 }

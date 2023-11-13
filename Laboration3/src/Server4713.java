@@ -3,6 +3,8 @@ OBS! No swedish letters in this program.
 STEN, SAX and PASE is played.
 STEN = ROCK, SAX = SCISSORS, PASE = PAPER
 *******************************************/
+// The Server4713 class is the server that handles the game logic.
+// Here it is resposible for generating a random hand and sending it to the client.
 import java.net.*;
 import java.io.*;
 import java.util.*;
@@ -43,6 +45,9 @@ class ClientHandler extends Thread {
 	    System.out.println((++numberOfPls)+": "+name);
             out.println("Hello, "+name);
             out.flush();
+		// Here the server is waiting for input from the client.
+		// If the client enters blank input, the connection is closed.
+		// Otherwise the server sends a random hand to the client.
 	    while(true) {
 		String input = in.readLine();
 		if(input==null || input.equals("")) break;
