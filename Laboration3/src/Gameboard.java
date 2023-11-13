@@ -15,8 +15,7 @@ class Gameboard extends JPanel {
     private JButton[] buttons = new JButton[3];
     private JButton lastPlayed; // remembers last chosen button/gesture
     private String[] texts = {"STEN", "SAX", "PASE"};
-    private JLabel upperMess, lowerMess, scorelabel;
-    private int score;
+    private JLabel upperMess, lowerMess;
     private Color bgcolor;
     private HashMap<String,JButton> map = new HashMap<String,JButton>();
 
