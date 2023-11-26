@@ -5,16 +5,16 @@ public class Run {
     public static void main(String[] args) {
 
         Composite suitcase = new Composite("suitcase", 100);
-        Composite bag = new Composite("bag", 20);
+        Composite bag = new Composite("torba", 20);
         Composite trunk = new Composite("trunk", 5);
-        Composite ness = new Composite("ness", 2);
+        Composite ness = new Composite("nessiser", 2);
 
         Leaf laptop = new Leaf("laptop", 10);
         Leaf camera = new Leaf("camera", 40);
         Leaf toothbrush = new Leaf("toothbrush", 50);
-        Leaf charger = new Leaf("charger", 12);
+        Leaf charger = new Leaf("laptop charger", 12);
         Leaf paper = new Leaf("paper", 17);
-        Leaf jumper = new Leaf("jumper", 29);
+        Leaf jumper = new Leaf("rock", 29);
         Leaf tshirt = new Leaf("tshirt", 32);
         Leaf hairspray = new Leaf("hairspray", 10);
         Leaf phone = new Leaf("phone", 11);
