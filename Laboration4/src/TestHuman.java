@@ -3,6 +3,8 @@ import Human.*;
 public class TestHuman {
 
     public static void main(String[] args) {
+
+        // This is copy-pasted from the instructions.
         Human billie = Human.create("Billie", "xxxxxx-560x");
         Human anna = Human.create("Anna", "xxxxxx-642x");
         Human magnus = Human.create("Magnus","xxxxxx-011x");

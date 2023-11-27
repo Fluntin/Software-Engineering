@@ -1,64 +1,63 @@
 import Composite.*;
-
 public class Run {
 
     public static void main(String[] args) {
 
         Composite suitcase = new Composite("suitcase", 100);
-        Composite bag = new Composite("torba", 20);
-        Composite trunk = new Composite("trunk", 5);
-        Composite ness = new Composite("nessiser", 2);
 
+        Composite hygieneBag = new Composite("hygiene bag", 15);
+        Composite sportBag = new Composite("sport bag", 20);
+        Composite electronicsBag = new Composite("electronics bag", 10);
+
+        // Items in hygiene bag
+        Leaf toothbrush = new Leaf("toothbrush", 1);
+        Leaf toothpaste = new Leaf("toothpaste", 2);
+        Leaf soap = new Leaf("soap", 1);
+        Leaf towel = new Leaf("towel", 5);
+        Leaf shampoo = new Leaf("shampoo", 3);
+        Leaf conditioner = new Leaf("conditioner", 3);
+
+        // Items in sport bag
+        Leaf shoes = new Leaf("shoes", 15);
+        Leaf hat = new Leaf("hat", 4);
+        Leaf tShirt = new Leaf("t-shirt", 5);
+        Leaf shorts = new Leaf("shorts", 4);
+
+        // Items in electronics bag
+        Leaf headphones = new Leaf("headphones", 7);
         Leaf laptop = new Leaf("laptop", 10);
-        Leaf camera = new Leaf("camera", 40);
-        Leaf toothbrush = new Leaf("toothbrush", 50);
-        Leaf charger = new Leaf("laptop charger", 12);
-        Leaf paper = new Leaf("paper", 17);
-        Leaf jumper = new Leaf("rock", 29);
-        Leaf tshirt = new Leaf("tshirt", 32);
-        Leaf hairspray = new Leaf("hairspray", 10);
-        Leaf phone = new Leaf("phone", 11);
+        Leaf charger = new Leaf("charger", 2);
+        Leaf mouse = new Leaf("mouse", 1);
 
-        //ness has hairspray
-        ness.addChild(hairspray);
+        // Adding items to hygiene bag
+        hygieneBag.addChild(toothbrush);
+        hygieneBag.addChild(toothpaste);
+        hygieneBag.addChild(soap);
+        hygieneBag.addChild(towel);
+        hygieneBag.addChild(shampoo);
+        hygieneBag.addChild(conditioner);
 
-        //trunk has ness as well as charger, paper and jumper
-        trunk.addChild(ness);
-        trunk.addChild(charger);
-        trunk.addChild(paper);
-        trunk.addChild(jumper);
+        // Adding items to sport bag
+        sportBag.addChild(shoes);
+        sportBag.addChild(hat);
+        sportBag.addChild(tShirt);
+        sportBag.addChild(shorts);
 
+        // Adding items to electronics bag
+        electronicsBag.addChild(headphones);
+        electronicsBag.addChild(laptop);
+        electronicsBag.addChild(charger);
+        electronicsBag.addChild(mouse);
 
-        //bag has trunk as well as camera, toothbrush and laptop
-        bag.addChild(laptop);
-        bag.addChild(camera);
-        bag.addChild(toothbrush);
-        bag.addChild(trunk);
+        // Packing bags in suitcase
+        suitcase.addChild(hygieneBag);
+        suitcase.addChild(sportBag);
+        suitcase.addChild(electronicsBag);
 
-
-        //suitcase has bag as well as tshirt and phone
-        suitcase.addChild(bag);
-        suitcase.addChild(tshirt);
-        suitcase.addChild(phone);
-
-
-        //printing the entire suitcase
+        // Printing the entire suitcase
         System.out.println(suitcase);
-        System.out.println(suitcase.getWeight());
-
-
-        //removing the hairspray
-        System.out.println("Removing the hairspray");
-        ness.removeChild(hairspray);
-
-        System.out.println(suitcase);
-        System.out.println(suitcase.getWeight());
-
-        //removing the entire trunk
-        System.out.println("Removing the trunk");
-        bag.removeChild(trunk);
-
-        System.out.println(suitcase);
-        System.out.println(suitcase.getWeight());
+        System.out.println("Total Weight: " + suitcase.getWeight());
     }
 }
+
+
