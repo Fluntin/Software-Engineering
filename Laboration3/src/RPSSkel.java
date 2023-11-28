@@ -46,7 +46,6 @@ class RPSSkel extends JFrame implements ActionListener {
         }
     }
     
-    
 
 	// When event occurs, this method is called.
 	// This method handles the game logic based on turnCounter -> keeps track of the game state.
@@ -102,8 +101,6 @@ class RPSSkel extends JFrame implements ActionListener {
 	}
 	
 
-	
-	
 	// Constructor for the class.
 	// It should create a frame, create a close button, create two gameboards and set up the gameboard.
 	// It should also create a socket, a buffered reader and a print writer.

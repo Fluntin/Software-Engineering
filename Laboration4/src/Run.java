@@ -5,53 +5,59 @@ public class Run {
 
         Composite suitcase = new Composite("suitcase", 100);
 
-        Composite hygieneBag = new Composite("hygiene bag", 15);
-        Composite sportBag = new Composite("sport bag", 20);
-        Composite electronicsBag = new Composite("electronics bag", 10);
+        Composite toiletryBag = new Composite("Toiletry Bag", 10);
+        Composite plasticBag = new Composite("Plastic Bag", 1);
+        Composite shoesBag = new Composite("Shoes Bag", 10);
+        Composite electronicsBag = new Composite("Electronics Bag", 20);
 
-        // Items in hygiene bag
-        Leaf toothbrush = new Leaf("toothbrush", 1);
-        Leaf toothpaste = new Leaf("toothpaste", 2);
-        Leaf soap = new Leaf("soap", 1);
-        Leaf towel = new Leaf("towel", 5);
+        // Items in Toiletry Bag
+        Leaf bodyWash = new Leaf("body wash", 2);
         Leaf shampoo = new Leaf("shampoo", 3);
-        Leaf conditioner = new Leaf("conditioner", 3);
+        Leaf razor = new Leaf("razor", 1);
+        Leaf shavingCream = new Leaf("shaving cream", 1);
 
-        // Items in sport bag
+        // Items in Plastic Bag
+        Leaf toothbrush = new Leaf("toothbrush", 1);
+        Leaf paradontax = new Leaf("paradontax", 1);
+
+        // Items in Shoes Bag
         Leaf shoes = new Leaf("shoes", 15);
-        Leaf hat = new Leaf("hat", 4);
-        Leaf tShirt = new Leaf("t-shirt", 5);
-        Leaf shorts = new Leaf("shorts", 4);
 
-        // Items in electronics bag
-        Leaf headphones = new Leaf("headphones", 7);
+        // Items in Electronics Bag
         Leaf laptop = new Leaf("laptop", 10);
         Leaf charger = new Leaf("charger", 2);
-        Leaf mouse = new Leaf("mouse", 1);
 
-        // Adding items to hygiene bag
-        hygieneBag.addChild(toothbrush);
-        hygieneBag.addChild(toothpaste);
-        hygieneBag.addChild(soap);
-        hygieneBag.addChild(towel);
-        hygieneBag.addChild(shampoo);
-        hygieneBag.addChild(conditioner);
+        // Rest of the items in Suitcase
+        Leaf shirt = new Leaf("shirt", 5);
+        Leaf pants = new Leaf("pants", 5);
+        Leaf underwear = new Leaf("underwear", 1);
+        Leaf socks = new Leaf("socks", 1);
 
-        // Adding items to sport bag
-        sportBag.addChild(shoes);
-        sportBag.addChild(hat);
-        sportBag.addChild(tShirt);
-        sportBag.addChild(shorts);
+        // Adding items to Plastic Bag
+        plasticBag.addChild(toothbrush);
+        plasticBag.addChild(paradontax);
 
-        // Adding items to electronics bag
-        electronicsBag.addChild(headphones);
+        // Adding items to Toiletry Bag
+        toiletryBag.addChild(bodyWash);
+        toiletryBag.addChild(shampoo);
+        toiletryBag.addChild(plasticBag);
+        toiletryBag.addChild(razor);
+        toiletryBag.addChild(shavingCream);
+
+        // Adding items to Shoes Bag
+        shoesBag.addChild(shoes);
+
+        // Adding items to Electronics Bag
         electronicsBag.addChild(laptop);
         electronicsBag.addChild(charger);
-        electronicsBag.addChild(mouse);
 
-        // Packing bags in suitcase
-        suitcase.addChild(hygieneBag);
-        suitcase.addChild(sportBag);
+        // Adding items to Suitcase
+        suitcase.addChild(toiletryBag);
+        suitcase.addChild(shoesBag);
+        suitcase.addChild(shirt);
+        suitcase.addChild(pants);
+        suitcase.addChild(underwear);
+        suitcase.addChild(socks);
         suitcase.addChild(electronicsBag);
 
         // Printing the entire suitcase

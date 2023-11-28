@@ -5,43 +5,63 @@ import java.util.Iterator;
 public class RunExtra {
 
     public static void main(String[] args) {
+
         Composite suitcase = new Composite("suitcase", 100);
-        Composite bag = new Composite("bag", 10);
-        Composite trunk = new Composite("trunk", 20);
-        Composite ness = new Composite("ness", 30);
 
+        Composite toiletryBag = new Composite("Toiletry Bag", 10);
+        Composite plasticBag = new Composite("Plastic Bag", 1);
+        Composite shoesBag = new Composite("Shoes Bag", 10);
+        Composite electronicsBag = new Composite("Electronics Bag", 20);
+
+        // Items in Toiletry Bag
+        Leaf bodyWash = new Leaf("body wash", 2);
+        Leaf shampoo = new Leaf("shampoo", 3);
+        Leaf razor = new Leaf("razor", 1);
+        Leaf shavingCream = new Leaf("shaving cream", 1);
+
+        // Items in Plastic Bag
+        Leaf toothbrush = new Leaf("toothbrush", 1);
+        Leaf paradontax = new Leaf("paradontax", 1);
+
+        // Items in Shoes Bag
+        Leaf shoes = new Leaf("shoes", 15);
+
+        // Items in Electronics Bag
         Leaf laptop = new Leaf("laptop", 10);
-        Leaf camera = new Leaf("camera", 40);
-        Leaf toothbrush = new Leaf("toothbrush", 50);
-        Leaf charger = new Leaf("charger", 12);
-        Leaf paper = new Leaf("paper", 17);
-        Leaf jumper = new Leaf("jumper", 29);
-        Leaf tshirt = new Leaf("tshirt", 32);
-        Leaf hairspray = new Leaf("hairspray", 10);
-        Leaf phone = new Leaf("phone", 11);
+        Leaf charger = new Leaf("charger", 2);
 
-        //ness has hairspray
-        ness.addChild(hairspray);
+        // Rest of the items in Suitcase
+        Leaf shirt = new Leaf("shirt", 5);
+        Leaf pants = new Leaf("pants", 5);
+        Leaf underwear = new Leaf("underwear", 1);
+        Leaf socks = new Leaf("socks", 1);
 
-        //trunk has ness as well as charger, paper and jumper
-        trunk.addChild(ness);
-        trunk.addChild(charger);
-        trunk.addChild(paper);
-        trunk.addChild(jumper);
+        // Adding items to Plastic Bag
+        plasticBag.addChild(toothbrush);
+        plasticBag.addChild(paradontax);
 
+        // Adding items to Toiletry Bag
+        toiletryBag.addChild(bodyWash);
+        toiletryBag.addChild(shampoo);
+        toiletryBag.addChild(plasticBag);
+        toiletryBag.addChild(razor);
+        toiletryBag.addChild(shavingCream);
 
+        // Adding items to Shoes Bag
+        shoesBag.addChild(shoes);
 
-        //bag has trunk as well as camera, toothbrush and laptop
-        bag.addChild(laptop);
-        bag.addChild(camera);
-        bag.addChild(toothbrush);
-        bag.addChild(trunk);
+        // Adding items to Electronics Bag
+        electronicsBag.addChild(laptop);
+        electronicsBag.addChild(charger);
 
-
-        //suitcase has bag as well as tshirt and phone
-        suitcase.addChild(bag);
-        suitcase.addChild(tshirt);
-        suitcase.addChild(phone);
+        // Adding items to Suitcase
+        suitcase.addChild(toiletryBag);
+        suitcase.addChild(shoesBag);
+        suitcase.addChild(shirt);
+        suitcase.addChild(pants);
+        suitcase.addChild(underwear);
+        suitcase.addChild(socks);
+        suitcase.addChild(electronicsBag);
 
 
         for (Iterator<Component> i = suitcase.deepIterator(); i.hasNext();) {
