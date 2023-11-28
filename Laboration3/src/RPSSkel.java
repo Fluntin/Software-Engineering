@@ -140,4 +140,15 @@ class RPSSkel extends JFrame implements ActionListener {
         new RPSSkel();
     }
 }
-
+/*******************************************
+This class serves as the user interface and game logic controller.
+It extends JFrame to create a graphical user interface (GUI) for the game.
+It creates two Gameboard instances, one for the player and one for the computer.
+It sets up the GUI components, such as buttons, labels, and the "Close" button.
+It establishes a socket connection to the server, creating a BufferedReader and PrintWriter for communication.
+It implements the ActionListener interface to handle button clicks (player's choices) and manages the game logic.
+The updateGameUI method updates the GUI based on the game state.
+The determineWinner method determines the winner of each round.
+The playGame method sends the player's choice to the server and receives the computer's choice.
+The main method creates an instance of RPSSkel, initiating the game.
+*******************************************/

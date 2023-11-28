@@ -34,3 +34,11 @@ public class Client {
   }
 
 }
+/*******************************************
+This class represents the client-side of the game.
+It connects to the server running on "localhost" at port 4713.
+It uses a BufferedReader to read input from the server and a PrintWriter to send input to the server.
+It continuously prompts the user for input (choices: "STEN," "SAX," or "PASE") using a Scanner.
+It sends the user's choice to the server and receives the server's response, printing it to the console.
+The client can exit the game by entering blank input.
+*******************************************/

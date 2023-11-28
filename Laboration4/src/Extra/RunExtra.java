@@ -63,10 +63,13 @@ public class RunExtra {
         suitcase.addChild(socks);
         suitcase.addChild(electronicsBag);
 
+        //System.out.println(suitcase);
 
-        for (Iterator<Component> i = suitcase.deepIterator(); i.hasNext();) {
+        for (Iterator<Component> i = suitcase.iterator(); i.hasNext();) {
             Component item = i.next();
             System.out.println(item);
         }
+
+        
     }
 }

@@ -63,6 +63,15 @@ public class Run {
         // Printing the entire suitcase
         System.out.println(suitcase);
         System.out.println("Total Weight: " + suitcase.getWeight());
+
+        // Removing items from suitcase
+        //suitcase.removeChild(toiletryBag);
+        plasticBag.removeChild(paradontax);
+        suitcase.removeChild(underwear);
+
+        // Printing the entire suitcase
+        System.out.println(suitcase);
+        System.out.println("Total Weight: " + suitcase.getWeight());
     }
 }
 

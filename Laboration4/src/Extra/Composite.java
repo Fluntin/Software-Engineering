@@ -51,7 +51,7 @@ public class Composite extends Component implements Iterable {
     // When next() is called, it pops an element from the queue and adds its children to the queue.
     // This is repeated until the queue is empty.
     //------------------------------------------------------------------------------------------
-    @Override
+    /*@Override
     public Iterator iterator() {
         LinkedList queue = new LinkedList();
 
@@ -77,7 +77,8 @@ public class Composite extends Component implements Iterable {
             return child;
             }
         };
-    }
+    }*/
+   
     //------------------------------------------------------------------------------------------
     // This is my implementation of the iterator pattern.
     // It uses a depth-first traversal approach.
@@ -86,7 +87,8 @@ public class Composite extends Component implements Iterable {
     // When next() is called, it pops an element from the stack and pushes its children onto the 
     // stack in reverse order.
     //------------------------------------------------------------------------------------------
-    public Iterator deepIterator() {
+    @Override
+    public Iterator iterator() {
         LinkedList stack = new LinkedList();
 
         for (int i=children.size()-1; i>=0; i--) {
@@ -111,7 +113,7 @@ public class Composite extends Component implements Iterable {
                 return child;
             }
         };
-    }
+    } 
 
 }
 

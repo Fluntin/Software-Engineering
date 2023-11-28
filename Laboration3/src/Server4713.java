@@ -63,3 +63,9 @@ class ClientHandler extends Thread {
 	}
     }
 }
+/*******************************************
+This class serves as the server for the game.
+It listens on port 4713 for incoming client connections.
+When a client connects, it creates a new ClientHandler thread to handle that client's communication.
+It generates a random hand ("STEN," "SAX," or "PASE") for the client to play against.
+*******************************************/
