@@ -4,8 +4,16 @@ import javax.swing.*;
 import java.net.*;
 import java.io.*;
 
+//-------------------------------------------------------------------------------------------------
+// This whole code is all about the GUI and the Game Logic.
+// The GUI is created using the Java Swing library.
+// The game logic is implemented using the ActionListener interface.
+// The ActionListener interface is used to handle button clicks (player's choices) and manages the game logic.
+//-------------------------------------------------------------------------------------------------
+
 class RPSSkel extends JFrame implements ActionListener {
 
+    //-------------------------------------------------------------------------------------------------
 	// Just instance variables, no changes needed
     JFrame frame = new JFrame();
     Gameboard playerBoard, computerBoard;
@@ -17,9 +25,12 @@ class RPSSkel extends JFrame implements ActionListener {
     String playerChoice;
     String computerChoice;
 
+    //-------------------------------------------------------------------------------------------------
+    // Method that updates the game user interface.
 	// Games user interface with two gameboards, one for the player and one for the computer.
 	// It should take care of the game logic and update the gameboards accordingly.
-	// Take 3 arguments: player name, player board and computer board.
+	// Take 3 arguments: the game state, the computer's result and a boolean that determines if the choices should be set.
+    //-------------------------------------------------------------------------------------------------
     void updateGameUI(String gameState, String computersResult, boolean setChoices) {
         playerBoard.setLower(gameState);
         computerBoard.setLower(computersResult);
@@ -29,9 +40,11 @@ class RPSSkel extends JFrame implements ActionListener {
         }
     }
 
+    //-------------------------------------------------------------------------------------------------
 	// Method that determines the winner of the game and updates the gameboards accordingly.
 	// There are 3 cases: draw, player wins or computer wins.
 	// We can group the cases by using if-else statements.
+    //-------------------------------------------------------------------------------------------------
     void determineWinner() {
         if (playerChoice.equals(computerChoice)) {
             updateGameUI("DRAW", "DRAW", true);
@@ -46,9 +59,11 @@ class RPSSkel extends JFrame implements ActionListener {
         }
     }
     
-
+    //-------------------------------------------------------------------------------------------------
 	// When event occurs, this method is called.
 	// This method handles the game logic based on turnCounter -> keeps track of the game state.
+    // The turnCounter is incremented by 1 each time the method is called.
+    //-------------------------------------------------------------------------------------------------
     public void actionPerformed(ActionEvent e) {
         if (turnCounter == 0) {
             updateGameUI("ONE...", "ONE...", false);
@@ -71,10 +86,11 @@ class RPSSkel extends JFrame implements ActionListener {
         }
         turnCounter++;
     }
-
+    //-------------------------------------------------------------------------------------------------
 	// Method that creates a close button.
 	// When the button is pressed, the program should exit.
 	// Here I have created a button and added an action listener to it!
+    //-------------------------------------------------------------------------------------------------
     void createCloseButton() {
         closeButton = new JButton("Close");
         ActionListener closeButtonListener = (new ActionListener() {
@@ -85,10 +101,11 @@ class RPSSkel extends JFrame implements ActionListener {
         });
         closeButton.addActionListener(closeButtonListener);
     }
-
+    //-------------------------------------------------------------------------------------------------
 	// Method that sets up the gameboard.
 	// It should add the gameboards to the frame and set the size of the frame.
 	// I need to make this more esthetically pleasing...
+    //-------------------------------------------------------------------------------------------------
 	void setupGameBoard() {
 		// Create a JPanel to hold the game boards side by side
 		JPanel gamePanel = new JPanel(new GridLayout(1, 2));
@@ -100,10 +117,12 @@ class RPSSkel extends JFrame implements ActionListener {
 		frame.setVisible(true);		
 	}
 	
-
+    //-------------------------------------------------------------------------------------------------
 	// Constructor for the class.
-	// It should create a frame, create a close button, create two gameboards and set up the gameboard.
+	// It should create a frame, create a close button, create two gameboard instances one for the player and one for the computer.
+    // Then it should set up the gameboard.
 	// It should also create a socket, a buffered reader and a print writer.
+    //-------------------------------------------------------------------------------------------------
     RPSSkel() {
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         createCloseButton();
@@ -111,20 +130,26 @@ class RPSSkel extends JFrame implements ActionListener {
         computerBoard = new Gameboard("Computer");
         setupGameBoard();
         try {
-            networkSocket = new Socket("localhost", 4713);
-            inputReader = new BufferedReader(new InputStreamReader(networkSocket.getInputStream()));
-            outputWriter = new PrintWriter(networkSocket.getOutputStream());
-            outputWriter.println("Player 1");
-            outputWriter.flush();
-            System.out.println(inputReader.readLine());
-        } catch (IOException e) {
+            networkSocket = new Socket("localhost", 4713); // Socket for communication with the server on port 4713 is created.
+            inputReader = new BufferedReader(new InputStreamReader(networkSocket.getInputStream())); // BufferedReader is created to read input from the server.
+            outputWriter = new PrintWriter(networkSocket.getOutputStream()); // PrintWriter is created to send input to the server.
+            outputWriter.println("Player 1"); // We send the player name to the server.
+            outputWriter.flush(); // We need to flush the output stream to send the message immediately.
+            System.out.println(inputReader.readLine()); // We print the server's response.
+        } 
+        //-------------------------------------------------------------------------------------------------
+        // catch (IOException e) is used to catch any exceptions that might occur.
+        // This is done to prevent the program from crashing.
+        //-------------------------------------------------------------------------------------------------
+        catch (IOException e) {
             System.out.println(e);
         }
     }
 
+    //-------------------------------------------------------------------------------------------------
 	// Method that plays the game.
 	// It should send the player choice to the server and receive the computer choice from the server.
-	// It should also update the gameboards accordingly.
+    //-------------------------------------------------------------------------------------------------
     void playGame() {
         try {
             outputWriter.println(playerChoice);
