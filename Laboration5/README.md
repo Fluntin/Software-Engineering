@@ -1,7 +1,3 @@
-Sure, here's the entire text formatted as a `README.md` for better readability:
-
----
-
 # Lab 5 - Tree of Life
 
 ## Objectives
