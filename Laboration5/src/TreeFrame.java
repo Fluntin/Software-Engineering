@@ -1,9 +1,11 @@
 import javax.swing.*;
 import javax.swing.tree.*;
-import java.io.*;        
 import java.awt.*;
 import java.awt.event.*;
+
+
 class TreeFrame extends JFrame implements ActionListener {
+	// GUI components for the tree view
     JCheckBox box;
     JTree tree;
     DefaultMutableTreeNode root;
@@ -13,66 +15,83 @@ class TreeFrame extends JFrame implements ActionListener {
     static final String showString = " Show Details ";
 
     TreeFrame() {
-	Container c = getContentPane();
+		// Get the content pane of the JFrame to add components
+    	Container c = getContentPane();
 
-	// initTree() should create root, treeModel and tree.
-	initTree();
+    	// Initialize the tree structure
+    	initTree();
 
-	tree.addMouseListener(new MouseAdapter() {
-		public void mouseClicked(MouseEvent e) {
-		    if (box.isSelected())
-			showDetails(tree.getPathForLocation(e.getX(), 
-							    e.getY()));
-		}
-	    });
-	    
-	controls = new JPanel();
-	box = new JCheckBox(showString);
-	initGUI();
-	c.add(controls, BorderLayout.NORTH);
-	c.add(tree, BorderLayout.CENTER);   
-	setVisible(true);
-    } 
+		// Add a mouse listener to the tree
+		tree.addMouseListener(new MouseAdapter() {
+    		public void mouseClicked(MouseEvent e) {
+				// Show details of the node where the mouse is clicked if the checkbox is selected
+    		    if (box.isSelected())
+        			showDetails(tree.getPathForLocation(e.getX(),
+        							    e.getY()));
+    		      }
+    	    });
+
+		// Initialize the control panel
+    	controls = new JPanel();
+    	box = new JCheckBox(showString);
+    	initGUI();
+		// Add controls and tree to the content pane
+    	c.add(controls, BorderLayout.NORTH);
+    	c.add(tree, BorderLayout.CENTER);
+		// Make the frame visible
+    	setVisible(true);
+    }
 
     public void actionPerformed(ActionEvent e) {
-	String cmd = e.getActionCommand();
-	if (cmd.equals(closeString))
-	    dispose();
+		// Handle action events (e.g., button clicks)
+    	String cmd = e.getActionCommand();
+    	if (cmd.equals(closeString))
+    	    dispose(); // Close the frame if the close button is clicked
     }
 
     void initGUI() {
-	tree.setFont(new Font("Dialog", Font.BOLD, 12));
-	controls.add(box);
-	addButton(closeString);
-	controls.setBackground(Color.lightGray);
-	controls.setLayout(new FlowLayout());    
-	setSize(400, 400);
+		// Set properties for the tree and control panel
+    	tree.setFont(new Font("Dialog", Font.BOLD, 12));
+    	controls.add(box);
+    	addButton(closeString);
+    	controls.setBackground(Color.lightGray);
+    	controls.setLayout(new FlowLayout());
+    	setSize(400, 400);
     }
- 
+
     void addButton(String n) {
-	JButton b = new JButton(n);
-	b.setFont(new Font("Dialog", Font.BOLD, 12));
-	b.addActionListener(this);
-	controls.add(b);
+		// Create and add a button to the control panel
+    	JButton b = new JButton(n);
+    	b.setFont(new Font("Dialog", Font.BOLD, 12));
+    	b.addActionListener(this);
+    	controls.add(b);
     }
 
-    // ***** Override method initTree in your subclass
-    // ***** create root, treeModel and tree in the new initTree
+	//-----------------------------------------------------
+    // Override initTree in subclass
+    // Create root, treeModel and tree in the new initTree
+	// Method to initialize the tree structure, meant to be overridden in subclasses
+	//-----------------------------------------------------
     void initTree(){
-	root = new DefaultMutableTreeNode("TestString");
-	treeModel = new DefaultTreeModel(root);
-	tree = new JTree(treeModel);
+    	root = new DefaultMutableTreeNode("TestString"); // Create the root node
+    	treeModel = new DefaultTreeModel(root); // Create the tree model based on the root
+    	tree = new JTree(treeModel); // Create the tree view based on the model
     }
 
-    // ***** showDetails can also be overridden in a subclass *****
+    //-----------------------------------------------------
+	// Method to show details of a selected node, meant to be overridden in subclasses
+	// showDetails can also be overridden in a subclass to show more details
+	//-----------------------------------------------------
     void showDetails(TreePath path){
-	if (path == null)
-	    return;
-	String info = path.getLastPathComponent().toString();
-	JOptionPane.showMessageDialog(this, info);
+    	if (path == null)
+    	    return;
+		// Get info from the selected node and show it in a dialog box
+    	String info = path.getLastPathComponent().toString();
+    	JOptionPane.showMessageDialog(this, info);
     }
 
     public static void main(String[] u) {
-	new TreeFrame();
+		// Create an instance of TreeFrame, initiating the GUI
+    	new TreeFrame();
     }
 }

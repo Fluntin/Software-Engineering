@@ -2,48 +2,63 @@ import javax.swing.*;
 import javax.swing.tree.*;
 import java.io.*;        
 class DirTree2 extends TreeFrame {
-
+	//-----------------------------------------------------
+	// Satic variable for the directory to be displayed
     static String directory=".";
 
+	//-----------------------------------------------------
     // Overrides method in TreeFrame
     void initTree() {
+	// Initialize the root node with the directory path
 	root = new DefaultMutableTreeNode(directory);
+	// Set up the tree model with the root node
 	treeModel = new DefaultTreeModel( root );
+	// Create the tree with using the tree model
 	tree = new JTree( treeModel );
+	// Build the tree from the directory
 	buildTree();
     }
 
-    // New method
+    //-----------------------------------------------------
+	// Method to start building the tree from the current directory
     private void buildTree() {
 	File f=new File(directory);
 	String[] list = f.list(); 
 	for (int i=0; i<list.length; i++ )
+		// Recursively build the tree for each item in the directory
 	    buildTree(new File(f,list[ i ]), root); 
     }
 
-    // New method
+	//-----------------------------------------------------
+    // Overloaded method to build the tree recursively
     private void buildTree( File f, DefaultMutableTreeNode parent) {  
+	// Create a tree node for each file/directory
 	DefaultMutableTreeNode child = 
 	    new DefaultMutableTreeNode( f.toString() );
 	parent.add(child);
 	if ( f.isDirectory() ) {
+		// If it's a directory, recurse into it and build its tree
 	    String list[] = f.list();
 	    for ( int i = 0; i < list.length; i++ )
 		buildTree( new File(f,list[i]), child);            
 	}        
     }  
 
+	//-----------------------------------------------------
     // Overrides method in TreeFrame
     void showDetails(TreePath p){
 	if ( p == null )
 	    return;
+	// Get the file from the selected node
 	File f = new File( p.getLastPathComponent().toString() );
+	// Display a message dialog with file details
 	JOptionPane.showMessageDialog( this, f.getPath() + 
 				       "\n   " + 
 				       getAttributes( f ) );
     }
 
-    // New method
+	//-----------------------------------------------------
+    // Method to get attributes of a file or directory
     private String getAttributes( File f ) {
 	String t = "";
 	if ( f.isDirectory() )
@@ -68,9 +83,12 @@ class DirTree2 extends TreeFrame {
 	} 
 	return t;
     }
-
+	
+	//-----------------------------------------------------
+	// Main method to run the application
     public static void main(String[] args) {
 	if(args.length>0) directory=args[0];
+	// Create an instance of DirTree2, initiating the GUI
 	new DirTree2();
     }
 
