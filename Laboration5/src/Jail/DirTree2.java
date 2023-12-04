@@ -1,5 +1,9 @@
+package Jail;
 import javax.swing.*;
 import javax.swing.tree.*;
+
+import TreeFrame;
+
 import java.io.*;        
 class DirTree2 extends TreeFrame {
 	//-----------------------------------------------------
