@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <Biosfar namn="Liv"> ar allt som fortplantar sej 
 <Rike namn="Vaxter"> kan inte forflytta sej 
 </Rike> 
