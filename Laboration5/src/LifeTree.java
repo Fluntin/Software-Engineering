@@ -56,12 +56,14 @@ class LifeTree extends TreeFrame {
         System.exit(1);
       }
     } else {
-      // Create a child node and add it to the parent
-      CustomTreeNode child = createNode(line);
-      parent.add(child);
-      // Continue building the tree if there are more lines
-      if (scanner.hasNextLine()) {
-        buildTree(scanner.nextLine(), child);
+      // Create a child node and add it to the parent if parent is not null
+      if (parent != null) {
+        CustomTreeNode child = createNode(line);
+        parent.add(child);
+        // Continue building the tree if there are more lines
+        if (scanner.hasNextLine()) {
+          buildTree(scanner.nextLine(), child);
+        }
       }
     }
   }
@@ -104,4 +106,3 @@ class LifeTree extends TreeFrame {
     new LifeTree();
   }
 }
-
