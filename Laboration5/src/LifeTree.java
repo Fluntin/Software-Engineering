@@ -31,9 +31,9 @@ class LifeTree extends TreeFrame {
   // Method to create a CustomTreeNode from a line of text
   CustomTreeNode createNode(String line) {
     // Extract node level, name, and text from the line
-    String openingLevel = line.substring(line.indexOf("<") + 1, line.indexOf(" namn"));
-    String name = line.substring(line.indexOf("=\"") + 2, line.indexOf(">") - 1);
-    String text = line.substring(line.indexOf("> ") + 2, line.length());
+    String openingLevel = line.substring(line.indexOf("<") + 1, line.indexOf(" namn")); //Get the index of the first space after the tag name +1 signifies the first character after the tag
+    String name = line.substring(line.indexOf("=\"") + 2, line.indexOf(">") - 1); //Get the index of the first space after the tag name +2 signifies the second character after the tag
+    String text = line.substring(line.indexOf("> ") + 2, line.length()); // Get the text between the tags
 
     // Return a new CustomTreeNode with extracted data
     return new CustomTreeNode(name, openingLevel, text);
@@ -42,12 +42,12 @@ class LifeTree extends TreeFrame {
   // Method to recursively build the tree from the file lines
   void buildTree(String line, CustomTreeNode parent) {
     // Check for end tag to stop recursion
-    if (line.substring(0, 2).equals("</")) {
-      if (line.substring(line.indexOf("/") + 1, line.indexOf(">")).equals(parent.getNodeLevel())) {
-        if (scanner.hasNextLine()) {
+    if (line.substring(0, 2).equals("</")) { // Check if the line is an end tag
+      if (line.substring(line.indexOf("/") + 1, line.indexOf(">")).equals(parent.getNodeLevel())) { // Check if the end tag matches the parent node
+        if (scanner.hasNextLine()) { // Check if there are more lines
           // Move up to the parent node and continue building
-          CustomTreeNode p = (CustomTreeNode) parent.getParent();
-          buildTree(scanner.nextLine(), p);
+          CustomTreeNode p = (CustomTreeNode) parent.getParent(); // Get the parent node
+          buildTree(scanner.nextLine(), p); // Continue building the tree if there are more lines
         }
         return;
       } else {
@@ -57,12 +57,12 @@ class LifeTree extends TreeFrame {
       }
     } else {
       // Create a child node and add it to the parent if parent is not null
-      if (parent != null) {
-        CustomTreeNode child = createNode(line);
-        parent.add(child);
+      if (parent != null) { // Check if the parent node is null
+        CustomTreeNode child = createNode(line); // Create a new node
+        parent.add(child); // Add the new node to the parent
         // Continue building the tree if there are more lines
-        if (scanner.hasNextLine()) {
-          buildTree(scanner.nextLine(), child);
+        if (scanner.hasNextLine()) { // Check if there are more lines
+          buildTree(scanner.nextLine(), child); // Continue building the tree if there are more lines
         }
       }
     }
@@ -70,15 +70,15 @@ class LifeTree extends TreeFrame {
 
   // Method to show details of the selected node
   void showDetails(TreePath path) {
-    if (path == null) return;
+    if (path == null) return; // Check if the path is null this should never happen!
 
     // Retrieve the selected node
-    CustomTreeNode node = (CustomTreeNode) path.getLastPathComponent();
+    CustomTreeNode node = (CustomTreeNode) path.getLastPathComponent(); // Get the last node in the path
     // Build the information string for the node
-    String info = "Level: " + node.getNodeLevel() + "\nName: " + node.toString() + "\nText: " + node.getNodeText();
+    String info = "Level: " + node.getNodeLevel() + "\nName: " + node.toString() + "\nText: " + node.getNodeText(); // Build the information string its ALL in one stiring
     // Build the hierarchy information
-    String extraInfo = "Hierarchy: " + node.toString();
-    while (node.getParent() != null) {
+    String extraInfo = "Hierarchy: " + node.toString(); // Build the information string by adding the node name to the extraInfo string
+    while (node.getParent() != null) { // As long as the node has a parent we want to add it to the extraInfo string
       node = (CustomTreeNode) node.getParent();
       extraInfo = extraInfo + " <- " + node.toString();
     }
