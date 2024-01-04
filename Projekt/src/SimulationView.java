@@ -26,6 +26,7 @@ public class SimulationView extends Canvas {
         }
     }
 
+    // Drawing the particles on the canvas
     @Override
     public void paint(Graphics graphics) {
         this.setBackground(Color.BLUE);
@@ -38,6 +39,7 @@ public class SimulationView extends Canvas {
         movementCounter++;
     }
 
+    // Drawing the boundary of the simulation area
     private void drawBoundary(Graphics graphics) {
         graphics.drawLine(75, 75, 125, 75);
         graphics.drawLine(125, 75, 125, 125);
@@ -50,6 +52,7 @@ public class SimulationView extends Canvas {
         graphics.drawLine(199, 1, 1, 1);
     }
 
+    // Drawing the particle as a point on the canvas
     private void drawParticle(Graphics graphics, Particle particle) {
         int xPosition = (int) Math.round(particle.getXPosition());
         int yPosition = (int) Math.round(particle.getYPosition());
@@ -87,6 +90,8 @@ public class SimulationView extends Canvas {
         graphics.drawLine(xPosition, yPosition, xPosition, yPosition);
     }
     
+    // Updating the boundary map around the particle that has stopped moving
+    // to ensure that no other particle can move into the same position
     private void updateBoundaryMapAround(int x, int y) {
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
@@ -98,6 +103,8 @@ public class SimulationView extends Canvas {
         }
     }
     
+    // Updating the boundary map around the particle that has started moving
+    // to ensure that no other particle can move into the same position
     public static void main(String[] args) {
         ParticleModel model = new ParticleModel();
         SimulationView view = new SimulationView(model);

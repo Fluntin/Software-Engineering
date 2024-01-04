@@ -3,6 +3,8 @@ import java.awt.*;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 
+// This class is responsible for the movement of the particles in the simulation
+// and the simulation time of the program (how many times the particles move)
 public class ControlPanel extends JPanel {
     ParticleModel particleModel;
 
