@@ -1,12 +1,9 @@
 import java.util.HashMap;
 
-public class PlaneMap extends HashMap<Coords, Integer> {
+public class CoordinateMap extends HashMap<Coordinate, Integer> {
     @Override
     public boolean containsKey(Object key) {
+        key = (Coordinate) key;
         return super.containsKey(key);
     }
 }
-
-
-
-

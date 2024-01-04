@@ -1,50 +1,45 @@
 import java.util.ArrayList;
 
-public class Model {
+public class ParticleModel {
     private ArrayList<Particle> particles = new ArrayList<>();
-    private int time = 50;
-    private int length = 3;
+    private int simulationTime = 50;
 
-    Model() {
+    ParticleModel() {
         int totalParticles = 10000;
         for (int i = 0; i < totalParticles; i++) {
             particles.add(new Particle());
         }
     }
 
-    public void moveParticles() {
+    public void moveAllParticles() {
         for (Particle particle : particles) {
             if (particle.isMovable()) {
-                particle.randomMove();
+                particle.moveRandomly();
             }
         }
     }
 
-    public void setLength(int length) {
+    public void setVectorLength(int length) {
         for (Particle particle : particles) {
             if (particle.isMovable()) {
-                particle.changeLength(length);
+                particle.setLength(length);
             }
         }
     }
 
-    public int getLength() {
+    public int getVectorLength() {
         return particles.get(0).getLength();
     }
 
-    public void setTime(int t) {
-        time = t;
+    public void setSimulationTime(int time) {
+        simulationTime = time;
     }
 
-    public int getTime() {
-        return time;
+    public int getSimulationTime() {
+        return simulationTime;
     }
 
-    public ArrayList<Particle> getParticles() {
+    public ArrayList<Particle> getAllParticles() {
         return particles;
     }
 }
-
-
-
-

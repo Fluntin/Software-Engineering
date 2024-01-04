@@ -1,51 +1,52 @@
 import java.awt.*;
-import java.util.Objects;
 import java.util.Random;
 
 public class Particle {
-    private double x, y, theta;
-    private int length = 3;
+    private double xPosition, yPosition, angle;
+    private int movementLength = 3;
     private Color color;
-    private boolean movable = true;
+    private boolean isMovable = true;
 
     Particle() {
         color = Color.RED;
-        randomTheta();
+        generateRandomAngle();
         Random random = new Random();
-        x = 200 * random.nextDouble();
-        y = 200 * random.nextDouble();
+        xPosition = 200 * random.nextDouble();
+        yPosition = 200 * random.nextDouble();
     }
 
-    private void randomTheta() {
+    private void generateRandomAngle() {
         Random random = new Random();
-        theta = 2 * Math.PI * random.nextDouble();
+        angle = 2 * Math.PI * random.nextDouble();
     }
 
-    public void randomMove() {
-        randomTheta();
-        x = x + length * Math.cos(theta);
-        y = y + length * Math.sin(theta);
+    public void moveRandomly() {
+        generateRandomAngle();
+        xPosition += movementLength * Math.cos(angle);
+        yPosition += movementLength * Math.sin(angle);
     }
 
-    public double getX() {
-        return x;
+    public double getXPosition() {
+        return xPosition;
     }
 
-    public double getY() {
-        return y;
+    public double getYPosition() {
+        return yPosition;
     }
 
-    public void changeLength(int length) {
-        this.length = length;
+    public void setLength(int length) {
+        movementLength = length;
     }
 
     public int getLength() {
-        return length;
+        return movementLength;
     }
 
     public boolean isMovable() {
-        return movable;
+        return isMovable;
+    }
+
+    public void setMovable(boolean movable) {
+        isMovable = movable;
     }
 }
-
-
