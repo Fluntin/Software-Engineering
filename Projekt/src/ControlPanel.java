@@ -1,49 +1,89 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.AdjustmentEvent;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentListener;
 
-// This class is responsible for the movement of the particles in the simulation
-// and the simulation time of the program (how many times the particles move)
 public class ControlPanel extends JPanel {
-    ParticleModel particleModel;
+    private ParticleModel particleModel;
 
+    // Constructor
     ControlPanel(ParticleModel particleModel) {
         this.particleModel = particleModel;
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        initializeComponents();
+        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+    }
 
-        JTextField timeTextField = new JTextField("Change in time");
-        JTextField lengthTextField = new JTextField("Change in vector length");
+    // Method to initialize and set up components
+    private void initializeComponents() {
+        // Create and setup labels
+        JLabel timeLabel = createLabel("Change in time");
+        JLabel lengthLabel = createLabel("Change in vector length");
 
-        timeTextField.setEditable(false);
-        lengthTextField.setEditable(false);
+        // Create and setup scroll bars
+        JScrollBar timeScrollBar = createScrollBar(particleModel.getSimulationTime(), 0, 1000);
+        JScrollBar lengthScrollBar = createScrollBar(particleModel.getVectorLength(), 0, 20);
 
-        JScrollBar timeScrollBar = new JScrollBar(Scrollbar.VERTICAL, particleModel.getSimulationTime(), 1, 0, 1000);
-        JScrollBar lengthScrollBar = new JScrollBar(Scrollbar.VERTICAL, particleModel.getVectorLength(), 1, 0, 20);
+        // Add adjustment listeners to scroll bars
+        timeScrollBar.addAdjustmentListener(createAdjustmentListenerForTime());
+        lengthScrollBar.addAdjustmentListener(createAdjustmentListenerForLength());
 
-        timeScrollBar.setPreferredSize(new Dimension(20, 100));
-        lengthScrollBar.setPreferredSize(new Dimension(20, 100));
+        // Create and setup buttons
+        //JButton resetButton = createButton("Reset Simulation", this::resetSimulation);
+        JButton closeButton = createButton("Close Program", this::closeProgram);
 
-        timeScrollBar.addAdjustmentListener(new AdjustmentListener() {
-            @Override
-            public void adjustmentValueChanged(AdjustmentEvent e) {
-                int timeValue = e.getValue();
-                particleModel.setSimulationTime(timeValue);
-            }
-        });
+        // Add components to panel
+        addComponent(timeLabel);
+        addComponent(timeScrollBar);
+        addComponent(lengthLabel);
+        addComponent(lengthScrollBar);
+        //addComponent(resetButton);
+        addComponent(closeButton);
+    }
 
-        lengthScrollBar.addAdjustmentListener(new AdjustmentListener() {
-            @Override
-            public void adjustmentValueChanged(AdjustmentEvent e) {
-                int lengthValue = e.getValue();
-                particleModel.setVectorLength(lengthValue);
-            }
-        });
+    // Helper method to create and style a label
+    private JLabel createLabel(String text) {
+        JLabel label = new JLabel(text);
+        label.setAlignmentX(Component.CENTER_ALIGNMENT);
+        label.setFont(new Font("Arial", Font.BOLD, 12));
+        label.setForeground(new Color(50, 50, 50));
+        return label;
+    }
 
-        add(timeTextField, BorderLayout.WEST);
-        add(timeScrollBar);
-        add(lengthScrollBar);
-        add(lengthTextField, BorderLayout.EAST);
+    // Helper method to create and style a scroll bar
+    private JScrollBar createScrollBar(int value, int min, int max) {
+        JScrollBar scrollBar = new JScrollBar(Scrollbar.HORIZONTAL, value, 1, min, max);
+        scrollBar.setMaximumSize(new Dimension(180, 20));
+        return scrollBar;
+    }
 
-        setSize(200, 200);
+    // Helper method to create and style a button
+    private JButton createButton(String text, ActionListener actionListener) {
+        JButton button = new JButton(text);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.addActionListener(actionListener);
+        return button;
+    }
+
+    // Helper method to create an adjustment listener for time
+    private AdjustmentListener createAdjustmentListenerForTime() {
+        return e -> particleModel.setSimulationTime(e.getValue());
+    }
+
+    // Helper method to create an adjustment listener for length
+    private AdjustmentListener createAdjustmentListenerForLength() {
+        return e -> particleModel.setVectorLength(e.getValue());
+    }
+
+    // Method to close the program
+    private void closeProgram(ActionEvent e) {
+        System.exit(0);
+    }
+
+    // Helper method to add and align components in the panel
+    private void addComponent(JComponent component) {
+        add(Box.createRigidArea(new Dimension(0, 5))); // Add spacing
+        add(component);
     }
 }

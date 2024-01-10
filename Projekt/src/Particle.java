@@ -13,8 +13,8 @@ public class Particle {
         color = Color.RED;
         generateRandomAngle();
         Random random = new Random();
-        xPosition = 200 * random.nextDouble();
-        yPosition = 200 * random.nextDouble();
+        xPosition = 250 * random.nextDouble();
+        yPosition = 250 * random.nextDouble();
     }
 
     // Generates a random angle for the particle to move in (in radians) 

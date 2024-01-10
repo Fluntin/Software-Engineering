@@ -11,18 +11,39 @@ public class SimulationView extends Canvas {
         particleModel = model;
         int width = 200, height = 200;
         setSize(width, height);
+        initializeCircleBoundary(100, 100, 50);
+        initializeSquareBoundary(width, height);
+    }
 
-        // Initializing boundary coordinates
-        for (int i = 0; i < 50; i++) {
-            String topEdge = String.valueOf(75 + i) + "," + 75;
-            String rightEdge = String.valueOf(125) + "," + (75 + i);
-            String bottomEdge = String.valueOf(125 - i) + "," + 125;
-            String leftEdge = String.valueOf(75) + "," + (125 - i);
+    // Initializing the circle boundary of the simulation area
+    private void initializeCircleBoundary(int centerX, int centerY, int radius) {
+        for (int angle = 0; angle < 360; angle++) {
+            double rad = Math.toRadians(angle);
+            int x = centerX + (int)(radius * Math.cos(rad));
+            int y = centerY + (int)(radius * Math.sin(rad));
+            String key = x + "," + y;
+            boundaryMap.put(key, 1);
+        }
+    }
 
+    private void initializeSquareBoundary(int width, int height) {
+        int margin = 2; // Margin from the edge
+        int squareWidth = width - 2 * margin; // Width of the square, 196 pixels
+    
+        // Top and Bottom edges
+        for (int x = margin; x < margin + squareWidth; x++) {
+            String topEdge = x + "," + margin;
+            String bottomEdge = x + "," + (margin + squareWidth - 1);
             boundaryMap.put(topEdge, 1);
-            boundaryMap.put(rightEdge, 1);
             boundaryMap.put(bottomEdge, 1);
+        }
+    
+        // Left and Right edges
+        for (int y = margin; y < margin + squareWidth; y++) {
+            String leftEdge = margin + "," + y;
+            String rightEdge = (margin + squareWidth - 1) + "," + y;
             boundaryMap.put(leftEdge, 1);
+            boundaryMap.put(rightEdge, 1);
         }
     }
 
@@ -41,16 +62,27 @@ public class SimulationView extends Canvas {
 
     // Drawing the boundary of the simulation area
     private void drawBoundary(Graphics graphics) {
-        graphics.drawLine(75, 75, 125, 75);
-        graphics.drawLine(125, 75, 125, 125);
-        graphics.drawLine(125, 125, 75, 125);
-        graphics.drawLine(75, 125, 75, 75);
-
-        graphics.drawLine(1, 1, 1, 199);
-        graphics.drawLine(1, 199, 199, 199);
-        graphics.drawLine(199, 199, 199, 1);
-        graphics.drawLine(199, 1, 1, 1);
+        // Drawing the circle
+        int centerX = 100, centerY = 100, radius = 50; // Same as in initializeCircleBoundary
+        for (int angle = 0; angle < 360; angle++) {
+            double rad = Math.toRadians(angle);
+            int x1 = centerX + (int)(radius * Math.cos(rad));
+            int y1 = centerY + (int)(radius * Math.sin(rad));
+            rad = Math.toRadians(angle + 1); // Slightly increment angle for next point
+            int x2 = centerX + (int)(radius * Math.cos(rad));
+            int y2 = centerY + (int)(radius * Math.sin(rad));
+            graphics.drawLine(x1, y1, x2, y2); // Draw line between two adjacent points
+        }
+    
+        // Drawing the square
+        int margin = 2; // Same as in initializeSquareBoundary
+        int squareWidth = 196; // Width of the square
+        graphics.drawLine(margin, margin, margin + squareWidth, margin); // Top edge
+        graphics.drawLine(margin + squareWidth, margin, margin + squareWidth, margin + squareWidth); // Right edge
+        graphics.drawLine(margin + squareWidth, margin + squareWidth, margin, margin + squareWidth); // Bottom edge
+        graphics.drawLine(margin, margin + squareWidth, margin, margin); // Left edge
     }
+    
 
     // Drawing the particle as a point on the canvas
     private void drawParticle(Graphics graphics, Particle particle) {
@@ -61,12 +93,12 @@ public class SimulationView extends Canvas {
         if (xPosition < 3) {
             xPosition = 2;
         } else if (xPosition > 197) {
-            xPosition = 198;
+            xPosition = 197;
         }
         if (yPosition < 3) {
             yPosition = 2;
         } else if (yPosition > 197) {
-            yPosition = 198;
+            yPosition = 197;
         }
     
         // Drawing the particle based on its movability
@@ -116,7 +148,7 @@ public class SimulationView extends Canvas {
         panel.add(view);
         frame.add(panel, BorderLayout.CENTER);
         frame.add(controlPanel, BorderLayout.SOUTH);
-        frame.setSize(400, 400);
+        frame.setSize(800, 600);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }

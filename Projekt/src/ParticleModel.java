@@ -1,20 +1,23 @@
 import java.util.ArrayList;
 
-// This class is responsible for the movement of the particles
-// and the simulation time of the program (how many times the particles move) 
 public class ParticleModel {
-    private ArrayList<Particle> particles = new ArrayList<>();
+    private ArrayList<Particle> particles;
     private int simulationTime = 50;
+    private final int totalParticles = 10000;
 
-    ParticleModel() {
-        int totalParticles = 10000;
+    public ParticleModel() {
+        reset();
+    }
+
+    public void reset() {
+        particles = new ArrayList<>();
         for (int i = 0; i < totalParticles; i++) {
             particles.add(new Particle());
         }
+        simulationTime = 50; // Reset to the default simulation time
+        // Reset other state variables if needed
     }
 
-    // Moves all the particles in the simulation
-    // if they are movable (not stuck in the boundary)
     public void moveAllParticles() {
         for (Particle particle : particles) {
             if (particle.isMovable()) {
@@ -53,4 +56,5 @@ public class ParticleModel {
     public ArrayList<Particle> getAllParticles() {
         return particles;
     }
+ 
 }
