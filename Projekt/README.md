@@ -1,58 +1,33 @@
-# Particle Simulation Project
+# Brownian Motion Particle Simulation
 
-Welcome to our Particle Simulation project! This is an exciting journey into the world of computational physics and computer graphics, where we explore the fascinating concept of Brownian motion through a Java-based simulation.
+## Overview
 
-## Introduction to Brownian Motion
+This Java program simulates Brownian motion, a phenomenon where particles in a fluid move randomly due to collisions with surrounding molecules. The code provides a graphical representation of particles undergoing Brownian motion within a defined boundary.
 
-Brownian motion, named after the botanist Robert Brown, is the random movement observed in particles suspended in a fluid (like gas or liquid). This phenomenon is a cornerstone in the field of statistical mechanics and has vast applications in physics, chemistry, and beyond.
+## Brownian Motion
 
-## The Problem
+Brownian motion, named after the scientist Robert Brown, is the random motion of particles suspended in a fluid (liquid or gas) resulting from their collision with fast-moving atoms or molecules in the fluid. This motion is characterized by its random and unpredictable nature, which was one of the key pieces of evidence for the existence of atoms and molecules.
 
-Understanding and visualizing Brownian motion can be challenging due to its random and dynamic nature. Traditional mathematical models are often complex and not intuitive for visual learners. Our goal was to create an interactive simulation that makes it easier to visualize and understand how particles behave in Brownian motion.
+## How the Code Simulates Brownian Motion
 
-## Our Solution: A Java-Based Simulation
+This program uses a simplified model to simulate Brownian motion:
 
-We developed a Java program that simulates thousands of particles moving randomly, mimicking the behavior seen in Brownian motion. Here's a rundown of what our project offers:
+1. **Particles**: The program represents particles as small objects with positions in a two-dimensional space.
 
-### Dynamic Particle Movement
-- **Random Particle Movement**: Each particle moves based on a random angle, demonstrating the unpredictability inherent in Brownian motion.
+2. **Random Movement**: Each particle undergoes random motion by changing its position in a random direction at regular time intervals.
 
-### Interactive User Interface
-- **Control Panel**: Adjust the simulation speed and random movement length through a user-friendly interface.
+3. **Boundary**: The particles are confined within a circular boundary.
 
-### Collision and Boundary Handling
-- **Edge Interactions**: Particles that reach the boundary of the simulation window "stick" to it, changing color and becoming stationary, showcasing particle interaction with boundaries.
+4. **Control Panel**: The program provides a control panel with two settings:
+   - **Change in time**: This setting controls the time interval between particle movements, simulating the effect of collisions with surrounding molecules.
+   - **Change in vector length**: This setting controls the length of the movement vector, determining how far a particle moves in each step.
 
-### Scalable and Efficient
-- **Optimized for Large Numbers of Particles**: Our approach efficiently handles collisions, ensuring the simulation remains fluid even with over 10,000 particles.
+5. **Visualization**: The graphical canvas shows the particles as points moving within the circular boundary. Their random movement mimics Brownian motion.
 
-## How It Works
+## Program Structure
 
-- `Particle`: The core entity representing each moving particle.
-- `ParticleModel`: Manages all the particles, updating their states as per Brownian dynamics.
-- `ControlPanel`: Allows users to interact with and control the simulation parameters.
-- `SimulationView`: Renders the particles and handles their interactions with boundaries.
-- `ParticleSimulation`: Coordinates the simulation loop, ensuring continuous animation.
+- `ParticleSimulation`: The main class responsible for running the simulation in a separate thread, continuously updating particle positions.
 
-## Running the Simulation
+- `SimulationView`: This class provides the graphical representation of the simulation and draws the particles on a canvas.
 
-1. Clone this repository to your local machine.
-2. Compile the Java files.
-3. Execute the `SimulationView` class to start the simulation.
-
-```bash
-javac *.java
-java SimulationView
-```
-
-## Dive Into the Code
-
-We encourage you to explore the code, tweak parameters, and see how the behavior of the particles changes. It's a great way to get hands-on experience with the principles of Brownian motion and computational simulations.
-
-## Conclusion
-
-This project serves as a bridge between theoretical physics and practical visualization. By interacting with the simulation, students can gain a deeper understanding of Brownian motion and appreciate the beauty of physics in motion.
-
-Thank you for exploring our Particle Simulation project!
-
----
+- `Particle`: Defines the behavior of individual particles, including their random movement.
