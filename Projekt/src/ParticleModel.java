@@ -12,9 +12,9 @@ import java.util.ArrayList;
 // 3. Provide accessors to modify and retrieve simulation parameters
 //--------------------------------------------------------------------------------------------
 public class ParticleModel {
-    private ArrayList<Particle> particles;
-    private int simulationTime = 50;
-    private final int totalParticles = 10000;
+    private ArrayList<Particle> particles; // Collection of particles in the simulation
+    private int simulationTime = 50; // Milliseconds
+    private final int totalParticles = 10000; // Total number of particles in the simulation
 
     public ParticleModel() {
         reset();

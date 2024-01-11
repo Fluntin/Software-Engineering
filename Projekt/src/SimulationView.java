@@ -93,6 +93,7 @@ public class SimulationView extends Canvas {
     
     // Drawing a particle on the canvas 
     // The particle is drawn as a single pixel
+    // This blurs the line between View and Controller => VC - M
     private void drawParticle(Graphics graphics, Particle particle) {
         int xPosition = (int) Math.round(particle.getXPosition());
         int yPosition = (int) Math.round(particle.getYPosition());
@@ -131,7 +132,12 @@ public class SimulationView extends Canvas {
         graphics.drawLine(xPosition, yPosition, xPosition, yPosition);
     }
     
-    // Updating the boundary map around the particle
+    
+    // Mark the area around a particular particle as a boundary
+    // Update the boundary map around the particle
+    // 3x3 grid -> 8 points around the particle
+    // Preventing Overlap -> If a point is already a boundary, don't update it
+    // Dynamic Boundary Management -> If a point is already a boundary, don't update it
     private void updateBoundaryMapAround(int x, int y) {
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {

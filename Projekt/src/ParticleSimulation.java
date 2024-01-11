@@ -31,3 +31,7 @@ public class ParticleSimulation extends Thread {
         }
     }
 }
+
+//--------------------------------------------------------------------------------------------
+// By extending Thread, ParticleSimulation runs independently of the main GUI thread. 
+// This prevents the simulation from freezing or slowing down the user interface and vice versa.
