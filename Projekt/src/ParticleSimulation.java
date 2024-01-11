@@ -1,3 +1,10 @@
+//--------------------------------------------------------------------------------------------
+// Acts as the driving engine of the particle simulation.
+// 1. Updates the particle positions and 
+// 2. Triggers a repaint of the simulation view
+// 3. Sleeps for a short time to allow the user to see the changes
+//--------------------------------------------------------------------------------------------
+
 public class ParticleSimulation extends Thread {
     ParticleModel particleModel;
     SimulationView simulationView;

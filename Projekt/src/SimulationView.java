@@ -2,16 +2,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 
+//--------------------------------------------------------------------------------------------
+// Responsible for the visual representation of the particle simulation. 
+// It is a canvas that displays the particles and their movement.
+//--------------------------------------------------------------------------------------------
 public class SimulationView extends Canvas {
     ParticleModel particleModel;
     HashMap<String, Integer> boundaryMap = new HashMap<>();
     static int movementCounter;
 
+    //--------------------------------------------------------------------------------------------
+    // Constructor -> Accepts an instance of ParticleModel 
+    // thats managing the particle simulation logic
+    //--------------------------------------------------------------------------------------------
     SimulationView(ParticleModel model) {
-        particleModel = model;
-        int width = 200, height = 200;
-        setSize(width, height);
-        initializeCircleBoundary(100, 100, 50);
+        particleModel = model; // Initialize the simulation area
+        int width = 200, height = 200; // Width and height of the simulation area
+        setSize(width, height); // Set the size of the canvas
+        initializeCircleBoundary(100, 100, 50); 
         initializeSquareBoundary(width, height);
     }
 
@@ -26,6 +34,7 @@ public class SimulationView extends Canvas {
         }
     }
 
+    // Initializing the square boundary of the simulation area
     private void initializeSquareBoundary(int width, int height) {
         int margin = 2; // Margin from the edge
         int squareWidth = width - 2 * margin; // Width of the square, 196 pixels
@@ -74,22 +83,22 @@ public class SimulationView extends Canvas {
             graphics.drawLine(x1, y1, x2, y2); // Draw line between two adjacent points
         }
     
-        // Drawing the square
-        int margin = 2; // Same as in initializeSquareBoundary
-        int squareWidth = 196; // Width of the square
+        int margin = 2; 
+        int squareWidth = 196;
         graphics.drawLine(margin, margin, margin + squareWidth, margin); // Top edge
         graphics.drawLine(margin + squareWidth, margin, margin + squareWidth, margin + squareWidth); // Right edge
         graphics.drawLine(margin + squareWidth, margin + squareWidth, margin, margin + squareWidth); // Bottom edge
         graphics.drawLine(margin, margin + squareWidth, margin, margin); // Left edge
     }
     
-
-    // Drawing the particle as a point on the canvas
+    // Drawing a particle on the canvas 
+    // The particle is drawn as a single pixel
     private void drawParticle(Graphics graphics, Particle particle) {
         int xPosition = (int) Math.round(particle.getXPosition());
         int yPosition = (int) Math.round(particle.getYPosition());
     
-        // Ensuring the particle stays within bounds
+        // Check if the particle is within the boundary
+        // If not, set the particle position to the boundary
         if (xPosition < 3) {
             xPosition = 2;
         } else if (xPosition > 197) {
@@ -101,7 +110,8 @@ public class SimulationView extends Canvas {
             yPosition = 197;
         }
     
-        // Drawing the particle based on its movability
+        // Check if the particle is movable 
+        // If not, set the color to red
         if (particle.isMovable()) {
             String positionKey = xPosition + "," + yPosition;
             if (boundaryMap.containsKey(positionKey) && boundaryMap.get(positionKey) == -1) {
@@ -118,12 +128,10 @@ public class SimulationView extends Canvas {
             graphics.setColor(Color.RED);
         }
     
-        // Drawing the particle as a point
         graphics.drawLine(xPosition, yPosition, xPosition, yPosition);
     }
     
-    // Updating the boundary map around the particle that has stopped moving
-    // to ensure that no other particle can move into the same position
+    // Updating the boundary map around the particle
     private void updateBoundaryMapAround(int x, int y) {
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
@@ -135,8 +143,6 @@ public class SimulationView extends Canvas {
         }
     }
     
-    // Updating the boundary map around the particle that has started moving
-    // to ensure that no other particle can move into the same position
     public static void main(String[] args) {
         ParticleModel model = new ParticleModel();
         SimulationView view = new SimulationView(model);

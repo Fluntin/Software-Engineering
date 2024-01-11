@@ -1,8 +1,11 @@
 import java.awt.*;
 import java.util.Random;
 
-// This class is responsible for the movement of the particles in the simulation
-// and the simulation time of the program (how many times the particles move)
+//--------------------------------------------------------------------------------------------
+// Particle -> represent a particle in a simulation environment.
+// Contains properties and methods to manage the particle's position, movement, etc...
+//-------------------------------------------------------------------------------------------- 
+
 public class Particle {
     private double xPosition, yPosition, angle;
     private int movementLength = 3;
@@ -17,8 +20,7 @@ public class Particle {
         yPosition = 250 * random.nextDouble();
     }
 
-    // Generates a random angle for the particle to move in (in radians) 
-    // and sets the x and y coordinates of the particle
+    // Generates a random angle between 0 and 2*pi
     private void generateRandomAngle() {
         Random random = new Random();
         angle = 2 * Math.PI * random.nextDouble();

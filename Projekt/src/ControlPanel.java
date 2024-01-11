@@ -3,15 +3,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentListener;
+//--------------------------------------------------------------------------------------------
+//Serves as a user interface component for a particle simulation application. 
+//It allows users to interact with and control the simulation through various GUI elements
+//--------------------------------------------------------------------------------------------
 
 public class ControlPanel extends JPanel {
     private ParticleModel particleModel;
 
-    // Constructor
+    //--------------------------------------------------------------------------------------------
+    // Constructor ->  Accepts an instance of ParticleModel thats managing the particle simulation logic
+    //--------------------------------------------------------------------------------------------
     ControlPanel(ParticleModel particleModel) {
         this.particleModel = particleModel;
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        initializeComponents();
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); //Set layout of the panel to BoxLayout
+        initializeComponents(); 
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
     }
 
