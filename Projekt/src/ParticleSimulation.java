@@ -16,8 +16,14 @@ public class ParticleSimulation extends Thread {
         new Thread(this).start();
     }
 
-    // Running the simulation
+    //--------------------------------------------------------------------------------------------
     // The simulation runs in a separate thread!
+    // We have an infinite loop that updates the particle positions and triggers a repaint of the simulation view
+    // We also sleep for a short time to allow the user to see the changes
+    // The sleep time is determined by the simulation time
+    // The simulation time can be changed by the user through the GUI
+    // Where the simulation time is the time between each update of the particle positions
+    //--------------------------------------------------------------------------------------------
     @Override
     public void run() {
         while (true) {
@@ -35,3 +41,4 @@ public class ParticleSimulation extends Thread {
 //--------------------------------------------------------------------------------------------
 // By extending Thread, ParticleSimulation runs independently of the main GUI thread. 
 // This prevents the simulation from freezing or slowing down the user interface and vice versa.
+//--------------------------------------------------------------------------------------------

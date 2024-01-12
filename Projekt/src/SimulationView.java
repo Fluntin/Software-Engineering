@@ -19,7 +19,7 @@ public class SimulationView extends Canvas {
         particleModel = model; // Initialize the simulation area
         int width = 200, height = 200; // Width and height of the simulation area
         setSize(width, height); // Set the size of the canvas
-        initializeCircleBoundary(100, 100, 50); 
+        initializeCircleBoundary(200/2, 200/2, 50); 
         initializeSquareBoundary(width, height);
     }
 
@@ -63,6 +63,7 @@ public class SimulationView extends Canvas {
         graphics.setColor(Color.BLACK);
         drawBoundary(graphics);
 
+        // Iterate through all particles and draw them
         for (Particle particle : particleModel.getAllParticles()) {
             drawParticle(graphics, particle);
         }
@@ -72,7 +73,7 @@ public class SimulationView extends Canvas {
     // Drawing the boundary of the simulation area
     private void drawBoundary(Graphics graphics) {
         // Drawing the circle
-        int centerX = 100, centerY = 100, radius = 50; // Same as in initializeCircleBoundary
+        int centerX = 200/2, centerY = 200/2, radius = 50; // Same as in initializeCircleBoundary
         for (int angle = 0; angle < 360; angle++) {
             double rad = Math.toRadians(angle);
             int x1 = centerX + (int)(radius * Math.cos(rad));
@@ -84,7 +85,7 @@ public class SimulationView extends Canvas {
         }
     
         int margin = 2; 
-        int squareWidth = 196;
+        int squareWidth = 200-4;
         graphics.drawLine(margin, margin, margin + squareWidth, margin); // Top edge
         graphics.drawLine(margin + squareWidth, margin, margin + squareWidth, margin + squareWidth); // Right edge
         graphics.drawLine(margin + squareWidth, margin + squareWidth, margin, margin + squareWidth); // Bottom edge
@@ -102,30 +103,37 @@ public class SimulationView extends Canvas {
         // If not, set the particle position to the boundary
         if (xPosition < 3) {
             xPosition = 2;
-        } else if (xPosition > 197) {
-            xPosition = 197;
+        } else if (xPosition > 200-3) {
+            xPosition = 200-3;
         }
         if (yPosition < 3) {
             yPosition = 2;
-        } else if (yPosition > 197) {
-            yPosition = 197;
+        } else if (yPosition > 200-3) {
+            yPosition = 200-3;
         }
     
-        // Check if the particle is movable 
-        // If not, set the color to red
         if (particle.isMovable()) {
-            String positionKey = xPosition + "," + yPosition;
+            String positionKey = xPosition + "," + yPosition; // This is my key string
+
+            // Should change color but its still movable since its not a boundary
+            // The position is already occupied by another particle -> immovable
             if (boundaryMap.containsKey(positionKey) && boundaryMap.get(positionKey) == -1) {
-                graphics.setColor(Color.RED);
-            } else if (boundaryMap.containsKey(positionKey) && boundaryMap.get(positionKey) == 1) {
-                graphics.setColor(Color.RED);
+                graphics.setColor(Color.RED); 
+            } 
+            // Encountered a boundary -> immovable
+            else if (boundaryMap.containsKey(positionKey) && boundaryMap.get(positionKey) == 1) {
+                graphics.setColor(Color.RED); 
                 boundaryMap.put(positionKey, -1);
                 particle.setMovable(false);
                 updateBoundaryMapAround(xPosition, yPosition);
-            } else {
+            } 
+            // No boundary => movable
+            else {
                 graphics.setColor(Color.WHITE);
             }
-        } else {
+        } 
+        // Already immovable
+        else {
             graphics.setColor(Color.RED);
         }
     
@@ -149,11 +157,18 @@ public class SimulationView extends Canvas {
         }
     }
     
+    //Here is the main method!
     public static void main(String[] args) {
+        // 1. Create the model
         ParticleModel model = new ParticleModel();
+        // 2. Create the view and send the model to its constructor
         SimulationView view = new SimulationView(model);
+        // 3. Create the controller and send the model and view to its constructor
         ParticleSimulation simulation = new ParticleSimulation(model, view);
+        // 4. Also create the control panel and send the model to its constructor
         ControlPanel controlPanel = new ControlPanel(model);
+
+        // The rest of the code is just for setting up the GUI
         JFrame frame = new JFrame();
         JPanel panel = new JPanel();
         panel.setSize(200, 200);
